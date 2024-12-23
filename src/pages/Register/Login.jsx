@@ -1,10 +1,11 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import AuthContext from "../../contexts/AuthContext/AuthContext";
 
 const LogIn = () => {
-  const { loginUser } = useContext(AuthContext);
+  const { loginUser, signinWithGoogle } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const {
     register,
@@ -17,8 +18,38 @@ const LogIn = () => {
     console.log(data);
     const { email, password } = data;
     loginUser(email, password)
-      .then((result) => console.log(result.user))
+      .then((result) => {
+        console.log(result.user);
+        navigate("/");
+      })
       .catch((error) => console.log(error.message));
+  };
+
+  const handleGoogleLogin = () => {
+    signinWithGoogle()
+      .then((result) => {
+        console.log(result);
+        navigate("/");
+
+        // const Toast = Swal.mixin({
+        //   toast: true,
+        //   position: "top",
+        //   showConfirmButton: false,
+        //   timer: 3000,
+        //   timerProgressBar: true,
+        //   didOpen: (toast) => {
+        //     toast.onmouseenter = Swal.stopTimer;
+        //     toast.onmouseleave = Swal.resumeTimer;
+        //   },
+        // });
+        // Toast.fire({
+        //   icon: "success",
+        //   title: "Signed In Successfully",
+        // });
+      })
+      .catch((error) => {
+        console.log("ERROR", error.message);
+      });
   };
 
   return (
@@ -76,7 +107,6 @@ const LogIn = () => {
             >
               Sign In
             </button>
-
             <a className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-700">
               Forgot Password?
             </a>
@@ -92,8 +122,11 @@ const LogIn = () => {
 
         {/* Social Login */}
         <div className="mt-4">
-          <button className="w-full py-2 px-4 bg-[#456289] text-white font-semibold rounded-lg hover:bg-[#80A4C0] focus:outline-none focus:ring-2 focus:ring-[#80A4C0]">
-            Sign in with Google
+          <button
+            onClick={handleGoogleLogin}
+            className="w-full py-2 px-4 bg-[#456289] text-white font-semibold rounded-lg hover:bg-[#80A4C0] focus:outline-none focus:ring-2 focus:ring-[#80A4C0]"
+          >
+            Log in with Google
           </button>
         </div>
       </div>

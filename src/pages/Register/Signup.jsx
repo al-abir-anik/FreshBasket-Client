@@ -1,10 +1,12 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import AuthContext from "../../contexts/AuthContext/AuthContext";
 
 const SignUp = () => {
-  const { createUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const { setUser, createUser, signinWithGoogle, updateUserProfile } =
+    useContext(AuthContext);
 
   const {
     register,
@@ -14,11 +16,60 @@ const SignUp = () => {
   } = useForm();
 
   const onSignupSubmit = (data) => {
-    console.log(data);
     const { fullname, photoUrl, email, password } = data;
+
     createUser(email, password)
-      .then((result) => console.log(result.user))
+      .then((result) => {
+        console.log(result.user);
+        const updateUser = result.user;
+        setUser(updateUser);
+        updateUserProfile({ displayName: fullname, photoURL: photoUrl });
+        navigate("/");
+
+        // const Toast = Swal.mixin({
+        //   toast: true,
+        //   position: "top",
+        //   showConfirmButton: false,
+        //   timer: 3000,
+        //   timerProgressBar: true,
+        //   didOpen: (toast) => {
+        //     toast.onmouseenter = Swal.stopTimer;
+        //     toast.onmouseleave = Swal.resumeTimer;
+        //   },
+        // });
+        // Toast.fire({
+        //   icon: "success",
+        //   title: "Signed Up Successfully",
+        // });
+      })
       .catch((error) => console.log(error.message));
+  };
+
+  const handleGoogleSignup = () => {
+    signinWithGoogle()
+      .then((result) => {
+        console.log(result);
+        navigate("/");
+
+        // const Toast = Swal.mixin({
+        //   toast: true,
+        //   position: "top",
+        //   showConfirmButton: false,
+        //   timer: 3000,
+        //   timerProgressBar: true,
+        //   didOpen: (toast) => {
+        //     toast.onmouseenter = Swal.stopTimer;
+        //     toast.onmouseleave = Swal.resumeTimer;
+        //   },
+        // });
+        // Toast.fire({
+        //   icon: "success",
+        //   title: "Signed In Successfully",
+        // });
+      })
+      .catch((error) => {
+        console.log("ERROR", error.message);
+      });
   };
 
   return (
@@ -135,7 +186,10 @@ const SignUp = () => {
         </p>
 
         <div className="mt-4">
-          <button className="w-full py-2 px-4 bg-[#456289] text-white font-semibold rounded-lg hover:bg-[#80A4C0] focus:outline-none focus:ring-2 focus:ring-[#80A4C0]">
+          <button
+            onClick={handleGoogleSignup}
+            className="w-full py-2 px-4 bg-[#456289] text-white font-semibold rounded-lg hover:bg-[#80A4C0] focus:outline-none focus:ring-2 focus:ring-[#80A4C0]"
+          >
             Sign up with Google
           </button>
         </div>
