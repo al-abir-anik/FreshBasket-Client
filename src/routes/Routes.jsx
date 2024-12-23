@@ -1,11 +1,14 @@
 import { createBrowserRouter } from "react-router-dom";
-import Root from "../root/Root";
+import Root from "../layouts/Root";
 import ErrorPage from "./../errorPage/ErrorPage";
 import Home from "../pages/Home/Home";
 import AvailableFoods from "../pages/AvailableFoods";
 import AddFood from "../pages/AddFood";
 import ManageMyFoods from "../pages/ManageMyFoods";
 import MyFoodRequest from "../pages/MyFoodRequest";
+import LogIn from "../pages/Register/Login";
+import SignUp from './../pages/Register/SignUp';
+
 
 const Routes = createBrowserRouter([
   {
@@ -32,6 +35,14 @@ const Routes = createBrowserRouter([
       {
         path: "/myFoodRequest",
         element: <MyFoodRequest></MyFoodRequest>,
+      },
+      {
+        path: "/logIn",
+        element: <LogIn></LogIn>,
+      },
+      {
+        path: "/signUp",
+        element: <SignUp></SignUp>,
       },
     ],
   },
