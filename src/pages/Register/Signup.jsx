@@ -1,7 +1,11 @@
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import AuthContext from "../../contexts/AuthContext/AuthContext";
 
 const SignUp = () => {
+  const { createUser } = useContext(AuthContext);
+
   const {
     register,
     handleSubmit,
@@ -11,6 +15,10 @@ const SignUp = () => {
 
   const onSignupSubmit = (data) => {
     console.log(data);
+    const { fullname, photoUrl, email, password } = data;
+    createUser(email, password)
+      .then((result) => console.log(result.user))
+      .catch((error) => console.log(error.message));
   };
 
   return (
@@ -19,7 +27,7 @@ const SignUp = () => {
         <h2 className="text-2xl font-bold text-gray-700 mb-6 text-center">
           Sign Up
         </h2>
-        
+
         <form onSubmit={handleSubmit(onSignupSubmit)}>
           {/* Fullname */}
           <div className="mb-4">
@@ -97,7 +105,7 @@ const SignUp = () => {
               {...register("password", {
                 minLength: {
                   value: 6,
-                  message: "Password should be at least 2 characters.",
+                  message: "Password should be at least 6 characters.",
                 },
                 pattern: {
                   value: /^(?=.*[a-z])(?=.*[A-Z]).*$/,

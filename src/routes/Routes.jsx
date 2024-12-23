@@ -7,7 +7,8 @@ import AddFood from "../pages/AddFood";
 import ManageMyFoods from "../pages/ManageMyFoods";
 import MyFoodRequest from "../pages/MyFoodRequest";
 import LogIn from "../pages/Register/Login";
-import SignUp from './../pages/Register/SignUp';
+import SignUp from "../pages/Register/Signup";
+
 
 
 const Routes = createBrowserRouter([

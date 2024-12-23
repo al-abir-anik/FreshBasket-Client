@@ -1,7 +1,11 @@
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import AuthContext from "../../contexts/AuthContext/AuthContext";
 
 const LogIn = () => {
+  const { loginUser } = useContext(AuthContext);
+
   const {
     register,
     handleSubmit,
@@ -11,6 +15,10 @@ const LogIn = () => {
 
   const onLoginSubmit = (data) => {
     console.log(data);
+    const { email, password } = data;
+    loginUser(email, password)
+      .then((result) => console.log(result.user))
+      .catch((error) => console.log(error.message));
   };
 
   return (
@@ -19,7 +27,9 @@ const LogIn = () => {
         <h2 className="text-2xl font-bold text-gray-700 mb-6 text-center">
           Sign In
         </h2>
+
         <form onSubmit={handleSubmit(onLoginSubmit)}>
+          {/* Email Input */}
           <div className="mb-4">
             <label className="block text-gray-700 text-sm font-bold mb-2">
               Email
@@ -38,6 +48,7 @@ const LogIn = () => {
             />
           </div>
 
+          {/* Password Input */}
           <div className="mb-6">
             <label className="block text-gray-700 text-sm font-bold mb-2">
               Password
@@ -57,6 +68,7 @@ const LogIn = () => {
             {/* {wrongPass && <p className="text-red-600">{wrongPass}</p>} */}
           </div>
 
+          {/* Submit Button */}
           <div className="flex items-center justify-between">
             <button
               type="submit"
@@ -65,9 +77,9 @@ const LogIn = () => {
               Sign In
             </button>
 
-            <button className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-700">
+            <a className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-700">
               Forgot Password?
-            </button>
+            </a>
           </div>
         </form>
 
