@@ -5,7 +5,7 @@ import AuthContext from "../../contexts/AuthContext/AuthContext";
 import Google from "../../auth/SocialAuth/Google";
 
 const LogIn = () => {
-  const { loginUser, signinWithGoogle } = useContext(AuthContext);
+  const { loginUser } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const {
@@ -16,7 +16,6 @@ const LogIn = () => {
   } = useForm();
 
   const onLoginSubmit = (data) => {
-    console.log(data);
     const { email, password } = data;
     loginUser(email, password)
       .then((result) => {
