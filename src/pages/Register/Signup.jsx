@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import AuthContext from "../../contexts/AuthContext/AuthContext";
+import Google from "../../auth/SocialAuth/Google";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -43,33 +44,6 @@ const SignUp = () => {
         // });
       })
       .catch((error) => console.log(error.message));
-  };
-
-  const handleGoogleSignup = () => {
-    signinWithGoogle()
-      .then((result) => {
-        console.log(result);
-        navigate("/");
-
-        // const Toast = Swal.mixin({
-        //   toast: true,
-        //   position: "top",
-        //   showConfirmButton: false,
-        //   timer: 3000,
-        //   timerProgressBar: true,
-        //   didOpen: (toast) => {
-        //     toast.onmouseenter = Swal.stopTimer;
-        //     toast.onmouseleave = Swal.resumeTimer;
-        //   },
-        // });
-        // Toast.fire({
-        //   icon: "success",
-        //   title: "Signed In Successfully",
-        // });
-      })
-      .catch((error) => {
-        console.log("ERROR", error.message);
-      });
   };
 
   return (
@@ -171,6 +145,15 @@ const SignUp = () => {
             )}
           </div>
 
+          {/* LogIn Page Link */}
+          <p className="text-center text-gray-600 mb-6">
+            Already have an account?{" "}
+            <Link to={"/logIn"} className="text-blue-500 hover:text-blue-700">
+              Log In
+            </Link>
+          </p>
+
+          {/* Submit Button */}
           <button
             type="submit"
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 w-full rounded focus:outline-none focus:shadow-outline"
@@ -178,21 +161,9 @@ const SignUp = () => {
             Sign Up
           </button>
         </form>
-        <p className="text-center text-gray-600 mt-4">
-          Already have an account?{" "}
-          <Link to={"/logIn"} className="text-blue-500 hover:text-blue-700">
-            Log In
-          </Link>
-        </p>
 
-        <div className="mt-4">
-          <button
-            onClick={handleGoogleSignup}
-            className="w-full py-2 px-4 bg-[#456289] text-white font-semibold rounded-lg hover:bg-[#80A4C0] focus:outline-none focus:ring-2 focus:ring-[#80A4C0]"
-          >
-            Sign up with Google
-          </button>
-        </div>
+        {/* Social SignUp */}
+        <Google></Google>
       </div>
     </div>
   );

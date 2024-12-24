@@ -1,13 +1,14 @@
 import { useContext } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import AuthContext from "../../contexts/AuthContext/AuthContext";
 
 const Navbar = () => {
+  const navigate = useNavigate();
   const { user, signOutUser } = useContext(AuthContext);
 
   const handleSignOut = () => {
     signOutUser()
-      .then((result) => console.log(result.user))
+      .then(() => navigate("/logIn"))
       .catch((error) => console.log("ERROR", error.message));
   };
 
@@ -66,18 +67,24 @@ const Navbar = () => {
           <li>
             <NavLink to={"/availableFoods"}>AVAILABLE FOODS</NavLink>
           </li>
-          <li>
-            <NavLink to={"/addFood"}>ADD FOOD</NavLink>
-          </li>
-          <li>
-            <NavLink to={"/manageMyFoods"}>MANAGE MY FOODS</NavLink>
-          </li>
-          <li>
-            <NavLink to={"/myFoodRequest"}>MY FOOD REQUEST</NavLink>
-          </li>
+          {user && (
+            <li>
+              <NavLink to={"/addFood"}>ADD FOOD</NavLink>
+            </li>
+          )}
+          {user && (
+            <li>
+              <NavLink to={"/manageMyFoods"}>MANAGE MY FOODS</NavLink>
+            </li>
+          )}
+          {user && (
+            <li>
+              <NavLink to={"/myFoodRequest"}>MY FOOD REQUEST</NavLink>
+            </li>
+          )}
         </ul>
       </div>
-      <div className="">
+      <div className="space-x-5">
         {user ? (
           <button onClick={handleSignOut} className="btn">
             LOG OUT
