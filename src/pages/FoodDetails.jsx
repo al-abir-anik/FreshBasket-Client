@@ -5,7 +5,6 @@ import AuthContext from "../contexts/AuthContext/AuthContext";
 const FoodDetails = () => {
   const { user } = useContext(AuthContext);
   const specificFood = useLoaderData();
-
   const {
     _id,
     foodName,
@@ -64,7 +63,7 @@ const FoodDetails = () => {
               </button> */}
               <Link to={`/updateMovie/${_id}`}>
                 <button className="btn bg-[#9538e2] rounded-full text-white font-semibold text-lg px-10">
-                  Update Movie
+                  Request Food
                 </button>
               </Link>
             </div>

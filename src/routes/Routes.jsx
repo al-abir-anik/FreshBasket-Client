@@ -5,7 +5,7 @@ import Home from "../pages/Home/Home";
 import AvailableFoods from "../pages/AvailableFoods";
 import FoodDetails from "../pages/FoodDetails";
 import AddFood from "../pages/AddFood";
-import ManageMyFoods from "../pages/ManageMyFoods";
+import ManageMyFoods from "../pages/ManageMyFoods/ManageMyFoods";
 import MyFoodRequest from "../pages/MyFoodRequest";
 import LogIn from "../pages/Register/Login";
 import SignUp from "../pages/Register/Signup";
