@@ -213,7 +213,7 @@ const AddFood = () => {
           </label>
           <textarea
             placeholder="Enter additional notes"
-            rows="4"
+            rows="2"
             required
             {...register("notes", {
               minLength: {

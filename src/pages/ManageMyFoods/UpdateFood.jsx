@@ -51,8 +51,8 @@ const UpdateFood = () => {
             icon: "success",
             title: "Food Updated Successfully",
           });
+          navigate("/manageMyFoods");
         }
-        navigate("/manageMyFoods");
       });
   };
 

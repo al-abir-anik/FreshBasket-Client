@@ -1,6 +1,7 @@
 import { useContext } from "react";
-import { Link, useLoaderData } from "react-router-dom";
-import AuthContext from "../contexts/AuthContext/AuthContext";
+import { useLoaderData } from "react-router-dom";
+import AuthContext from "../../contexts/AuthContext/AuthContext";
+import RequestFood from "./RequestFood";
 
 const FoodDetails = () => {
   const { user } = useContext(AuthContext);
@@ -50,22 +51,12 @@ const FoodDetails = () => {
 
             <div className="space-x-3">
               {/* <button
-                // onClick={handleAddToFavourite}
+                // onClick={handleRequestFood}
                 className="btn bg-[#9538e2] rounded-full text-white font-semibold text-lg px-10"
               >
-                Add To Favourite
-              </button>
-              <button
-                // onClick={() => handleDelete(_id)}
-                className="btn bg-[#9538e2] rounded-full text-white font-semibold text-lg px-10"
-              >
-                Delete Movie
+                Request Food
               </button> */}
-              <Link to={`/updateMovie/${_id}`}>
-                <button className="btn bg-[#9538e2] rounded-full text-white font-semibold text-lg px-10">
-                  Request Food
-                </button>
-              </Link>
+              <RequestFood foodDetails={specificFood} user={user}></RequestFood>
             </div>
           </div>
         </div>

@@ -3,7 +3,7 @@ import Root from "../layouts/Root";
 import ErrorPage from "./../errorPage/ErrorPage";
 import Home from "../pages/Home/Home";
 import AvailableFoods from "../pages/AvailableFoods";
-import FoodDetails from "../pages/FoodDetails";
+import FoodDetails from "../pages/FoodDetails/FoodDetails";
 import AddFood from "../pages/AddFood";
 import ManageMyFoods from "../pages/ManageMyFoods/ManageMyFoods";
 import MyFoodRequest from "../pages/MyFoodRequest";
