@@ -1,5 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import AuthContext from "../../contexts/AuthContext/AuthContext";
+import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const ManageMyFoods = () => {
   const { user } = useContext(AuthContext);
@@ -11,6 +13,36 @@ const ManageMyFoods = () => {
       .then((data) => setUserFoods(data))
       .catch((error) => console.log(error.message));
   }, [user.email]);
+
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/foods/${id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.deletedCount > 0) {
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your food has been deleted.",
+                icon: "success",
+              });
+              const remainingFoods = userFoods.filter((food) => food._id !== id);
+              setUserFoods(remainingFoods);
+            }
+          });
+      }
+    });
+  };
 
   return (
     <div className="container mx-auto p-6">
@@ -42,10 +74,15 @@ const ManageMyFoods = () => {
                 <td className="px-4 py-2 border">{food.location}</td>
                 <td className="px-4 py-2 border">{food.expireDate}</td>
                 <td className="px-4 py-2 border">
-                  <button className="bg-blue-500 text-white px-3 py-1 rounded-md mr-2 hover:bg-blue-600">
-                    Update
-                  </button>
-                  <button className="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-600">
+                  <Link to={`/updateFood/${food._id}`}>
+                    <button className="bg-blue-500 text-white px-3 py-1 rounded-md mr-2 hover:bg-blue-600">
+                      Update
+                    </button>
+                  </Link>
+                  <button
+                    onClick={() => handleDelete(food._id)}
+                    className="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-600"
+                  >
                     Delete
                   </button>
                 </td>

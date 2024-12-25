@@ -55,7 +55,7 @@ const AddFood = () => {
             icon: "success",
             title: "New Food Added Successfully",
           });
-          navigate("/availableFoods");
+          navigate("/manageMyFoods");
         }
       });
   };
@@ -213,7 +213,7 @@ const AddFood = () => {
           </label>
           <textarea
             placeholder="Enter additional notes"
-            rows="2"
+            rows="4"
             required
             {...register("notes", {
               minLength: {
