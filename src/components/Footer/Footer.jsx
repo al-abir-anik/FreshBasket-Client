@@ -20,18 +20,18 @@ const Footer = () => {
         </p>
       </aside>
       <nav>
-        <h6 className="footer-title">Services</h6>
-        <a className="link link-hover">Branding</a>
-        <a className="link link-hover">Design</a>
-        <a className="link link-hover">Marketing</a>
-        <a className="link link-hover">Advertisement</a>
+        <h6 className="footer-title">Our Services</h6>
+        <a className="link link-hover">Food Distribution</a>
+        <a className="link link-hover">Emergency Relief</a>
+        <a className="link link-hover">Community Outreach</a>
+        <a className="link link-hover">Corporate Partnerships</a>
       </nav>
       <nav>
-        <h6 className="footer-title">Company</h6>
-        <a className="link link-hover">About us</a>
+        <h6 className="footer-title">Get Involved</h6>
+        <a className="link link-hover">Donate Food</a>
         <a className="link link-hover">Contact</a>
-        <a className="link link-hover">Jobs</a>
-        <a className="link link-hover">Press kit</a>
+        <a className="link link-hover"> Volunteer with Us</a>
+        <a className="link link-hover">Host a Campaign</a>
       </nav>
       <nav>
         <h6 className="footer-title">Legal</h6>
