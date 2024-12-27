@@ -17,6 +17,7 @@ const FoodDetails = () => {
     notes,
   } = specificFood;
 
+
   return (
     <section>
       <div className="w-full h-96 py-8 bg-[#9538e2] text-center space-y-3">

@@ -1,17 +1,18 @@
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
 const MySwal = withReactContent(Swal);
 
 const RequestFood = ({ foodDetails, user }) => {
-  const handleRequest = () => {
+  const navigate = useNavigate();
+
+  const handleRequestModal = () => {
     const currentDate = new Date().toLocaleString();
     const {
       _id,
       foodName,
       imageUrl,
-      donatorEmail,
-      donatorName,
       location,
       expireDate,
       userName,
@@ -72,6 +73,7 @@ const RequestFood = ({ foodDetails, user }) => {
         if (!notes) {
           Swal.showValidationMessage("Please enter additional notes.");
         }
+        handleFoodRequest(_id, notes);
         return { notes };
       },
     }).then((result) => {
@@ -82,10 +84,64 @@ const RequestFood = ({ foodDetails, user }) => {
     });
   };
 
+  const handleFoodRequest = (id, requestNote) => {
+    const currentDate2 = new Date().toLocaleString();
+
+    fetch(`http://localhost:5000/foods/${id}`, {
+      method: "DELETE",
+      headers: {
+        "content-type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((deleteResponse) => {
+        if (deleteResponse.deletedCount > 0) {
+          fetch("http://localhost:5000/requestedFoods", {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify({
+              id,
+              userEmail: user.email,
+              requestDate: currentDate2,
+              notes: requestNote,
+            }),
+          })
+            .then((res) => res.json())
+            .then((addResponse) => {
+              if (addResponse.insertedId) {
+                const Toast = Swal.mixin({
+                  toast: true,
+                  position: "top-end",
+                  showConfirmButton: false,
+                  timer: 3000,
+                  timerProgressBar: true,
+                  didOpen: (toast) => {
+                    toast.onmouseenter = Swal.stopTimer;
+                    toast.onmouseleave = Swal.resumeTimer;
+                  },
+                });
+                Toast.fire({
+                  icon: "success",
+                  title: "Food successfully requested",
+                });
+
+                // Optionally refresh the UI or navigate
+                navigate("/myFoodRequest"); // Adjust as needed
+              }
+            });
+        }
+      })
+      .catch((error) => {
+        console.error("Error handling food request:", error);
+      });
+  };
+
   return (
     <button
       className="bg-purple-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded"
-      onClick={handleRequest}
+      onClick={handleRequestModal}
     >
       Request Food
     </button>
