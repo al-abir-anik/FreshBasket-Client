@@ -76,41 +76,36 @@ const RequestFood = ({ foodDetails, user }) => {
         handleFoodRequest(_id, notes);
         return { notes };
       },
-    }).then((result) => {
-      if (result.isConfirmed) {
-        console.log("Request submitted with notes:", result.value.notes);
-        Swal.fire("Request Submitted!", "", "success");
-      }
     });
   };
 
   const handleFoodRequest = (id, requestNote) => {
     const currentDate2 = new Date().toLocaleString();
 
-    fetch(`http://localhost:5000/foods/${id}`, {
-      method: "DELETE",
+    fetch("https://food-bridge-server-hazel.vercel.app/requestedFoods", {
+      method: "POST",
       headers: {
         "content-type": "application/json",
       },
+      body: JSON.stringify({
+        id,
+        userEmail: user.email,
+        requestDate: currentDate2,
+        notes: requestNote,
+      }),
     })
       .then((res) => res.json())
-      .then((deleteResponse) => {
-        if (deleteResponse.deletedCount > 0) {
-          fetch("http://localhost:5000/requestedFoods", {
-            method: "POST",
+      .then((addResponse) => {
+        if (addResponse.insertedId) {
+          fetch(`https://food-bridge-server-hazel.vercel.app/foods/${id}`, {
+            method: "DELETE",
             headers: {
               "content-type": "application/json",
             },
-            body: JSON.stringify({
-              id,
-              userEmail: user.email,
-              requestDate: currentDate2,
-              notes: requestNote,
-            }),
           })
             .then((res) => res.json())
-            .then((addResponse) => {
-              if (addResponse.insertedId) {
+            .then((deleteResponse) => {
+              if (deleteResponse.deletedCount > 0) {
                 const Toast = Swal.mixin({
                   toast: true,
                   position: "top-end",
@@ -126,9 +121,7 @@ const RequestFood = ({ foodDetails, user }) => {
                   icon: "success",
                   title: "Food successfully requested",
                 });
-
-                // Optionally refresh the UI or navigate
-                navigate("/myFoodRequest"); // Adjust as needed
+                navigate("/myFoodRequest");
               }
             });
         }

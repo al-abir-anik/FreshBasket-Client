@@ -1,22 +1,25 @@
+import { useLoaderData } from "react-router-dom";
 import Banner from "./Banner";
 import Featured from "./Featured";
 
 const Home = () => {
+  const allFoods = useLoaderData();
+
   return (
     <div>
       <header>
         <Banner></Banner>
         <div className="w-full h-14 bg-[#2D2A6E] flex justify-center items-center">
           <p className="text-white">
-            The perfect theme for{" "}
+            The perfect place for{" "}
             <span className="font-medium uppercase text-[#96AE00]">
-              Beginners
+              food
             </span>{" "}
-            or{" "}
+            {" "}
             <span className="font-medium uppercase text-[#96AE00]">
-              Professionals
+              lovers
             </span>{" "}
-            - Absolutely no coding knowledge required!
+            - FoodBridge...
           </p>
         </div>
       </header>
@@ -24,7 +27,7 @@ const Home = () => {
       <main>
         {/* Featured Foods Section */}
         <section>
-          <Featured></Featured>
+          <Featured allFoods={allFoods}></Featured>
         </section>
 
         <section>

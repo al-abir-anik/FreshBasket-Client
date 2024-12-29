@@ -6,7 +6,7 @@ const MyFoodRequest = () => {
   const [requestedFoods, setRequestedFoods] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/requestedFoods?email=${user?.email}`)
+    fetch(`https://food-bridge-server-hazel.vercel.app/requestedFoods?email=${user?.email}`)
       .then((res) => res.json())
       .then((data) => setRequestedFoods(data))
       .catch((error) => console.log(error.message));
@@ -23,8 +23,8 @@ const MyFoodRequest = () => {
                 <th className="px-4 py-2 border">Image</th>
                 <th className="px-4 py-2 border">Food Name</th>
                 <th className="px-4 py-2 border">Donator Name</th>
-                <th className="px-4 py-2 border">Pickup Location</th>
-                <th className="px-4 py-2 border">Expire Date</th>
+                <th className="px-4 py-2 border">Request Notes</th>
+                <th className="px-4 py-2 border">Status</th>
                 <th className="px-4 py-2 border">Request Date</th>
               </tr>
             </thead>
@@ -41,8 +41,8 @@ const MyFoodRequest = () => {
                   <td className="px-4 py-2 border">{food.foodName}</td>
                   <td className="px-4 py-2 border">{food.userEmail}</td>
                   <td className="px-4 py-2 border">{food.notes}</td>
-                  <td className="px-4 py-2 border">{food.date}</td>
                   <td className="px-4 py-2 border">{food.status}</td>
+                  <td className="px-4 py-2 border">{food.requestDate}</td>
                 </tr>
               ))}
             </tbody>

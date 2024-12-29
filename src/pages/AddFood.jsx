@@ -16,12 +16,21 @@ const AddFood = () => {
   } = useForm();
 
   const onAddFoodSubmit = (data) => {
-    const { foodName, imageUrl, quantity, location, expireDate, notes } = data;
+    const {
+      foodName,
+      imageUrl,
+      quantity,
+      location,
+      status,
+      expireDate,
+      notes,
+    } = data;
     const newFood = {
       foodName,
       imageUrl,
       quantity,
       location,
+      status,
       expireDate,
       notes,
       userName: user.displayName,
@@ -29,7 +38,7 @@ const AddFood = () => {
       userPhotoUrl: user.photoURL,
     };
 
-    fetch("http://localhost:5000/foods", {
+    fetch("https://food-bridge-server-hazel.vercel.app/foods", {
       method: "POST",
       headers: {
         "content-type": "application/json",

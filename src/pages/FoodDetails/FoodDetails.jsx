@@ -17,14 +17,15 @@ const FoodDetails = () => {
     notes,
   } = specificFood;
 
-
   return (
     <section>
       <div className="w-full h-96 py-8 bg-[#9538e2] text-center space-y-3">
-        <h2 className="font-bold text-3xl text-white">Product Details</h2>
-        <p className="font-normal text-base text-white">
-          Explore the latest gadgets that will take your experience to the next
-          level. From smart devices to the coolest accessories, we have it all!
+        <h2 className="font-bold text-3xl text-white">Food Details</h2>
+        <p className="w-1/2 text-center mx-auto font-normal text-base text-white">
+          Food Details provide essential information about each food item,
+          including its ingredients, nutritional values, expiration date, and
+          dietary considerations, helping users make informed food choices. It
+          also offers insights into portion sizes and potential allergens.
         </p>
       </div>
       <div className="w-full h-96 bg-[#f6f6f6] relative">

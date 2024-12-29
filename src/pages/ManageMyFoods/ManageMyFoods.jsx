@@ -7,11 +7,12 @@ const ManageMyFoods = () => {
   const { user } = useContext(AuthContext);
   const [userFoods, setUserFoods] = useState([]);
 
+  
   useEffect(() => {
-    fetch(`http://localhost:5000/userFoods?email=${user?.email}`)
-      .then((res) => res.json())
-      .then((data) => setUserFoods(data))
-      .catch((error) => console.log(error.message));
+    fetch(`https://food-bridge-server-hazel.vercel.app/userFoods?email=${user?.email}`)
+    .then((res) => res.json())
+    .then((data) => setUserFoods(data))
+    .catch((error) => console.log(error.message));
   }, [user.email]);
 
   const handleDelete = (id) => {
@@ -25,7 +26,7 @@ const ManageMyFoods = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/foods/${id}`, {
+        fetch(`https://food-bridge-server-hazel.vercel.app/foods/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())

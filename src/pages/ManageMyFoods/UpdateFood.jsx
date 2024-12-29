@@ -26,7 +26,7 @@ const UpdateFood = () => {
       notes,
     };
 
-    fetch(`http://localhost:5000/foods/${_id}`, {
+    fetch(`https://food-bridge-server-hazel.vercel.app/foods/${_id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

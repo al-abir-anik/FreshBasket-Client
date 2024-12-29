@@ -22,11 +22,14 @@ const Routes = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
+        loader: () =>
+          fetch("https://food-bridge-server-hazel.vercel.app/featuredFoods"),
       },
       {
         path: "/availableFoods",
         element: <AvailableFoods></AvailableFoods>,
-        loader: () => fetch("http://localhost:5000/foods"),
+        //   loader: () =>
+        //     fetch("https://food-bridge-server-hazel.vercel.app/foods"),
       },
       {
         path: "/foodDetails/:id",
@@ -36,7 +39,9 @@ const Routes = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/foods/${params.id}`),
+          fetch(
+            `https://food-bridge-server-hazel.vercel.app/foods/${params.id}`
+          ),
       },
       {
         path: "/addFood",
@@ -62,7 +67,9 @@ const Routes = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/foods/${params.id}`),
+          fetch(
+            `https://food-bridge-server-hazel.vercel.app/foods/${params.id}`
+          ),
       },
       {
         path: "/myFoodRequest",
