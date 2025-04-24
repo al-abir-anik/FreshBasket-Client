@@ -56,7 +56,7 @@ const Banner = () => {
                   <p className="w-3/4 text-white text-xl font-normal">
                     {slide.description}
                   </p>
-                  <button className="btn w-fit uppercase">Shop Now</button>
+                  {/* <button className="btn w-fit uppercase">Shop Now</button> */}
                 </div>
               </div>
             </div>
