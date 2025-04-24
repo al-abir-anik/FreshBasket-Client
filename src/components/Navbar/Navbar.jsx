@@ -108,6 +108,11 @@ const Navbar = () => {
           <li>
             <NavLink to={"/contactUs"}>CONTACT US</NavLink>
           </li>
+          {user && (
+            <li>
+              <Link to={"/dashboard"}>DASHBOARD</Link>
+            </li>
+          )}
         </ul>
       </div>
       <div className="space-x-5">

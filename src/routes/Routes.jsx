@@ -13,6 +13,10 @@ import AuthRoute from "./AuthRoute";
 import PrivateRoute from "./PrivateRoute";
 import UpdateFood from "../pages/ManageMyFoods/UpdateFood";
 import ContactUs from "../pages/ContactUs/ContactUs";
+import Dashboard from "../layouts/Dashboard";
+import UserProfile from "../pages/Dashboard/UserProfile";
+import ManageProfile from "../pages/Dashboard/ManageProfile";
+import DashboardPage from "../pages/Dashboard/DashboardPage";
 
 const Routes = createBrowserRouter([
   {
@@ -99,6 +103,29 @@ const Routes = createBrowserRouter([
             <SignUp></SignUp>
           </AuthRoute>
         ),
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: (
+      <PrivateRoute>
+        <Dashboard></Dashboard>
+      </PrivateRoute>
+    ),
+    errorElement: <ErrorPage></ErrorPage>,
+    children: [
+      {
+        path: "/dashboard",
+        element: <DashboardPage></DashboardPage>,
+      },
+      {
+        path: "userProfile",
+        element: <UserProfile></UserProfile>,
+      },
+      {
+        path: "manageProfile",
+        element: <ManageProfile></ManageProfile>,
       },
     ],
   },
