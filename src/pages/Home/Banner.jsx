@@ -15,7 +15,7 @@ const Banner = () => {
     },
     {
       id: 2,
-      img: "https://i.ibb.co.com/V2pb3H9/10882.jpg",
+      img: "https://i.ibb.co.com/gLsRJGLQ/10882.jpg",
       alt: "Italian pasta shells with mushrooms",
       description:
         "Penne pasta in tomato sauce with meat, tomatoes decorated with pea sprouts on a dark table.",
@@ -40,7 +40,7 @@ const Banner = () => {
         pagination={{ clickable: true }}
         autoplay={{ delay: 3000, disableOnInteraction: false }}
         loop
-        className="w-full lg:h-[50rem] md:h-[30rem] h-96"
+        className="w-full lg:h-[50rem] md:h-[30rem] min-h-screen"
       >
         {slides.map((slide) => (
           <SwiperSlide key={slide.id}>
@@ -50,7 +50,7 @@ const Banner = () => {
                 backgroundImage: `url(${slide.img})`,
               }}
             >
-              <div className="bg-black/40 w-full h-full">
+              <div className="bg-black/40 w-full h-full mt-20">
                 <div className="w-2/6 h-full lg:ml-40 md:ml-20 ml-10 flex flex-col justify-center lg:gap-16 gap-8">
                   <h2 className="text-white text-5xl font-bold">{slide.alt}</h2>
                   <p className="w-3/4 text-white text-xl font-normal">

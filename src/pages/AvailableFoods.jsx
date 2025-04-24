@@ -9,7 +9,6 @@ const AvailableFoods = () => {
   const [sortExpiry, setSortExpiry] = useState(false);
   const [column, setColumn] = useState(false);
   const [foods, setFoods] = useState([]);
-  console.log(search);
 
   useEffect(() => {
     fetch(
@@ -29,7 +28,7 @@ const AvailableFoods = () => {
   }
 
   return (
-    <div className="w-5/6 lg:w-3/4 mx-auto">
+    <div className="w-5/6 lg:w-3/4 mx-auto my-20">
       {/* Header Section */}
       <header className=" p-6 rounded-lg mb-6 text-center">
         <h1 className="text-4xl font-extrabold text-gray-800">

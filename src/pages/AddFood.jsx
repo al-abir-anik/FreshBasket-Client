@@ -70,7 +70,7 @@ const AddFood = () => {
   };
 
   return (
-    <div className="mx-auto w-2/3 my-20">
+    <div className="mx-auto w-2/3 my-40">
       <form
         onSubmit={handleSubmit(onAddFoodSubmit)}
         className="grid grid-cols-1 md:grid-cols-2 gap-6"

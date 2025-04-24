@@ -57,7 +57,7 @@ const UpdateFood = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-gray-100 my-20">
       <header className="bg-blue-600 text-white py-4 shadow-md">
         <div className="max-w-4xl mx-auto px-4">
           <h1 className="text-3xl font-bold">Update Food</h1>

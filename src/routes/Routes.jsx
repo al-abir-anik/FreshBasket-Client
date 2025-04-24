@@ -12,6 +12,7 @@ import SignUp from "../pages/Register/Signup";
 import AuthRoute from "./AuthRoute";
 import PrivateRoute from "./PrivateRoute";
 import UpdateFood from "../pages/ManageMyFoods/UpdateFood";
+import ContactUs from "../pages/ContactUs/ContactUs";
 
 const Routes = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const Routes = createBrowserRouter([
         element: <AvailableFoods></AvailableFoods>,
         //   loader: () =>
         //     fetch("https://food-bridge-server-hazel.vercel.app/foods"),
+      },
+      {
+        path: "/contactUs",
+        element: <ContactUs></ContactUs>,
       },
       {
         path: "/foodDetails/:id",

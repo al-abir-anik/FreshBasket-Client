@@ -18,7 +18,7 @@ const FoodDetails = () => {
   } = specificFood;
 
   return (
-    <section>
+    <section className="my-20">
       <div className="w-full h-96 py-8 bg-[#9538e2] text-center space-y-3">
         <h2 className="font-bold text-3xl text-white">Food Details</h2>
         <p className="w-1/2 text-center mx-auto font-normal text-base text-white">

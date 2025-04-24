@@ -13,7 +13,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="navbar justify-around h-24 bg-base-200">
+    <nav className="navbar justify-around h-20 bg-base-200 fixed z-10">
       <div className="">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -22,8 +22,7 @@ const Navbar = () => {
               className="h-5 w-5"
               fill="none"
               viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
+              stroke="currentColor">
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -34,8 +33,7 @@ const Navbar = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
-          >
+            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
             <li>
               <a>Item 1</a>
             </li>
@@ -82,6 +80,9 @@ const Navbar = () => {
               <NavLink to={"/myFoodRequest"}>MY FOOD REQUEST</NavLink>
             </li>
           )}
+          <li>
+            <NavLink to={"/contactUs"}>CONTACT US</NavLink>
+          </li>
         </ul>
       </div>
       <div className="space-x-5">

@@ -46,7 +46,7 @@ const ManageMyFoods = () => {
   };
 
   return (
-    <div className="container mx-auto p-6">
+    <div className="container mx-auto p-6 my-20">
       <h2 className="text-2xl font-bold mb-6">Manage Foods</h2>
       <div className="overflow-x-auto">
         <table className="min-w-full bg-white border border-gray-200 rounded-md shadow-md">
