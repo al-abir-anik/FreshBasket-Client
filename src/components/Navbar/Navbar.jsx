@@ -83,7 +83,7 @@ const Navbar = () => {
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1 space-x-2 text-[13px] font-semibold text-[#2D2A6E]">
+        <ul className="menu menu-horizontal px-1 space-x-2 text-[13px] font-semibold">
           <li>
             <NavLink to={"/"}>HOME</NavLink>
           </li>

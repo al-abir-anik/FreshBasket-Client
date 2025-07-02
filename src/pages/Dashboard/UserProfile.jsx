@@ -26,9 +26,7 @@ const UserProfile = () => {
           </div>
         </section>
 
-        <hr className="my-8 border-gray-200" />
-
-       
+        <hr className="my-8 border-gray-200" />     
       </div>
     </div>
   );

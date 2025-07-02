@@ -5,13 +5,12 @@ const Featured = ({ allFoods }) => {
   return (
     <div className="w-5/6 lg:w-3/4 mx-auto mt-20 mb-20 space-y-14">
       <div className="space-y-5">
-        <h2 className="text-[#2D2A6E] text-4xl font-semibold text-center tracking-wider">
+        <h2 className=" text-4xl font-semibold text-center tracking-wider">
           Featured Foods
         </h2>
-        <p className="text-[#4D5574] text-base font-medium text-center">
+        <p className=" text-base font-medium text-center">
           Magento extension to create content by drag and drop builtin
-          controls.Magento extension to create <br /> content by drag and drop
-          builtin controls.
+          controls.
         </p>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
