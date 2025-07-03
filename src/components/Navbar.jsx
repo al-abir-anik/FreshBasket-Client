@@ -6,7 +6,7 @@ import { LuSearch } from "react-icons/lu";
 import { RiMenu3Fill } from "react-icons/ri";
 import { PiShoppingCartSimple } from "react-icons/pi";
 
-const Navbar = () => {
+const Navbar = ({ setShowRegister }) => {
   const navigate = useNavigate();
   const { user, signOutUser } = useContext(AuthContext);
   const [open, setOpen] = useState(false);
@@ -68,11 +68,12 @@ const Navbar = () => {
           </div>
         ) : (
           <div className="space-x-6">
-            <Link to={"/login"}>
-              <button className="cursor-pointer px-8 py-2 bg-primary hover:bg-primary-dull transition text-white rounded-full">
-                Login
-              </button>
-            </Link>
+            <button
+              onClick={() => setShowRegister(true)}
+              className="cursor-pointer px-8 py-2 bg-primary hover:bg-primary-dull transition text-white rounded-full"
+            >
+              Login
+            </button>
           </div>
         )}
       </div>
