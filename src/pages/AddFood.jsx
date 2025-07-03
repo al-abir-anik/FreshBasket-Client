@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import AuthContext from "../contexts/AuthContext/AuthContext";
+import AuthContext from "../auth/AuthContext";
 
 const AddFood = () => {
   const navigate = useNavigate();

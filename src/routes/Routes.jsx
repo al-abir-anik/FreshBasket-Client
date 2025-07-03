@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import Root from "../layouts/Root";
-import ErrorPage from "./../errorPage/ErrorPage";
+import ErrorPage from "../pages/errorPage/ErrorPage";
 import Home from "../pages/Home/Home";
 import AvailableFoods from "../pages/AvailableFoods";
 import FoodDetails from "../pages/FoodDetails/FoodDetails";
@@ -21,12 +21,12 @@ import DashboardPage from "../pages/Dashboard/DashboardPage";
 const Routes = createBrowserRouter([
   {
     path: "/",
-    element: <Root></Root>,
-    errorElement: <ErrorPage></ErrorPage>,
+    element: <Root />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
-        element: <Home></Home>,
+        element: <Home />,
         loader: () =>
           fetch("https://food-bridge-server-hazel.vercel.app/featuredFoods"),
       },
@@ -89,7 +89,7 @@ const Routes = createBrowserRouter([
         ),
       },
       {
-        path: "/logIn",
+        path: "/login",
         element: (
           <AuthRoute>
             <LogIn></LogIn>
@@ -97,7 +97,7 @@ const Routes = createBrowserRouter([
         ),
       },
       {
-        path: "/signUp",
+        path: "/signup",
         element: (
           <AuthRoute>
             <SignUp></SignUp>

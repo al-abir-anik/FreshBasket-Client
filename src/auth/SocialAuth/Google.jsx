@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import AuthContext from "../../contexts/AuthContext/AuthContext";
+import AuthContext from "../AuthContext";
 
 const Google = () => {
   const navigate = useNavigate();

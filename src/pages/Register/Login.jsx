@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
-import AuthContext from "../../contexts/AuthContext/AuthContext";
+import AuthContext from "../../auth/AuthContext";
 import Google from "../../auth/SocialAuth/Google";
 
 const LogIn = () => {

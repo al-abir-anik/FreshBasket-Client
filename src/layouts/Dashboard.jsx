@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { Link, NavLink, Outlet } from "react-router-dom";
-import AuthContext from "../contexts/AuthContext/AuthContext";
+import AuthContext from "../auth/AuthContext";
 
 const Dashboard = () => {
   const { user, loading } = useContext(AuthContext);

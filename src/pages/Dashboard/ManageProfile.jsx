@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import AuthContext from "../../contexts/AuthContext/AuthContext";
+import AuthContext from "../../auth/AuthContext";
 
 const ManageProfile = () => {
   const { updateUserProfile, loading } = useContext(AuthContext);

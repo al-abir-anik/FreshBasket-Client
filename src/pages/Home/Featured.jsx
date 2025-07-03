@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import FoodCard from "../../components/Food/FoodCard";
+import FoodCard from "../../components/FoodCard";
+
 
 const Featured = ({ allFoods }) => {
   return (

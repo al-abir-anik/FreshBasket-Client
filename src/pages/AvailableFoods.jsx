@@ -1,6 +1,6 @@
-import FoodCard from "../components/Food/FoodCard";
+import FoodCard from "../components/FoodCard";
 import { useContext, useEffect, useState } from "react";
-import AuthContext from "../contexts/AuthContext/AuthContext";
+import AuthContext from "../auth/AuthContext";
 import { CiSearch } from "react-icons/ci";
 
 const AvailableFoods = () => {

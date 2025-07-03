@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { useLoaderData } from "react-router-dom";
-import AuthContext from "../../contexts/AuthContext/AuthContext";
+import AuthContext from "../../auth/AuthContext";
 import RequestFood from "./RequestFood";
 
 const FoodDetails = () => {

@@ -1,7 +1,6 @@
-/* eslint-disable react/prop-types */
 import { useContext } from "react";
-import AuthContext from "../../contexts/AuthContext/AuthContext";
 import { Link } from "react-router-dom";
+import AuthContext from "../auth/AuthContext";
 
 const FoodCard = ({ food }) => {
   const { user } = useContext(AuthContext);
