@@ -1,6 +1,14 @@
 const Footer = () => {
   return (
-    <footer className="footer bg-base-200 text-base-content p-10">
+    <footer className="footer bg-base-200 text-base-content">
+      <div className="w-full h-14 bg-[#2D2A6E] flex justify-center items-center">
+          <p className="text-white">
+            The perfect place for{" "}
+            <span className="font-medium uppercase text-[#96AE00]">food</span>{" "}
+            <span className="font-medium uppercase text-[#96AE00]">lovers</span>{" "}
+            - FoodBridge...
+          </p>
+        </div>
       <aside>
         <svg
           width="50"

@@ -27,8 +27,8 @@ const Routes = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
-        loader: () =>
-          fetch("https://food-bridge-server-hazel.vercel.app/featuredFoods"),
+        // loader: () =>
+        //   fetch("https://food-bridge-server-hazel.vercel.app/featuredFoods"),
       },
       {
         path: "/availableFoods",
