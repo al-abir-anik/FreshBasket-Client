@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
+import AuthContext from "../auth/AuthContext";
 
 const Register = ({ setShowRegister }) => {
   const [state, setState] = useState("login");
@@ -7,18 +8,55 @@ const Register = ({ setShowRegister }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const { loginUser, setUser, createUser, updateUserProfile } =
+    useContext(AuthContext);
+
+  const onLoginSubmit = (data) => {
+    const { email, password } = data;
+    
+    loginUser(email, password)
+      .then((result) => {
+        console.log(result.user);
+      })
+      .catch((error) => console.log(error.message));
+  };
+
+  const onSignupSubmit = (data) => {
+    const { fullname, photoUrl, email, password } = data;
+
+    createUser(email, password)
+      .then((result) => {
+        console.log(result.user);
+        const updateUser = result.user;
+        setUser(updateUser);
+        updateUserProfile({ displayName: fullname, photoURL: photoUrl });
+      })
+      .catch((error) => console.log(error.message));
+  };
+
+  // Unified form submit handler
+  const handleRegister = (e) => {
+    e.preventDefault();
+    if (state === "login") {
+      onLoginSubmit(email, password);
+    } else {
+      onSignupSubmit(name, email, password);
+    }
+  };
+
   return (
     <div
       onClick={() => setShowRegister(false)}
       className="fixed top-0 bottom-0 left-0 right-0 z-99 flex items-center text-sm text-gray-600 bg-black/50"
     >
       <form
+        onSubmit={handleRegister}
         onClick={(e) => e.stopPropagation()}
-        className="flex flex-col gap-3 m-auto items-start p-8 py-12 w-80 sm:w-[352px] rounded-lg shadow-xl border border-gray-200 bg-white"
+        className="flex flex-col gap-3 m-auto items-start p-8 py-10 w-80 sm:w-[352px] rounded-lg shadow-xl border border-gray-200 bg-white"
       >
         <p className="text-2xl font-medium m-auto">
           <span className="text-primary">User</span>{" "}
-          {state === "login" ? "Login" : "Sign Up"}
+          {state === "login" ? "Login" : "Signup"}
         </p>
         {state === "register" && (
           <div className="w-full">
@@ -56,7 +94,10 @@ const Register = ({ setShowRegister }) => {
           />
         </div>
 
-        <button className="bg-primary hover:bg-primary-dull transition-all text-white w-full py-2 mt-1 rounded-md cursor-pointer">
+        <button
+          type="submit"
+          className="bg-primary hover:bg-primary-dull transition-all text-white w-full py-2 mt-1 rounded-md cursor-pointer"
+        >
           {state === "register" ? "Create Account" : "Login"}
         </button>
 

@@ -6,7 +6,7 @@ const BestSeller = () => {
   const [products, setProducts] = useState([]);
 
   //   useEffect(() => {
-  //     fetch(`http://localhost:5000/all-games`)
+  //     fetch(`http://localhost:3000/all-games`)
   //       .then((res) => res.json())
   //       .then((data) => {
   //         setProducts(data);

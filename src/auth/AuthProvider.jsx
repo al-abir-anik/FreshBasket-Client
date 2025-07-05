@@ -66,12 +66,18 @@ const AuthProvider = ({ children }) => {
     updateUserProfile,
     signOutUser,
     isSeller,
-    setIsSeller
+    setIsSeller,
   };
 
   return (
     <AuthContext.Provider value={authInfo}>
-      {loading ? <p>Loading...</p> : children}
+      {loading ? (
+        <div className="min-h-screen flex items-center justify-center">
+          <div className="loader"></div>
+        </div>
+      ) : (
+        children
+      )}
     </AuthContext.Provider>
   );
 };

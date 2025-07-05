@@ -1,214 +1,16 @@
-import logo from "./icons/logo.svg";
-import search_icon from "./icons/search_icon.svg";
-import remove_icon from "./icons/remove_icon.svg";
-import arrow_right_icon_colored from "./icons/arrow_right_icon_colored.svg";
-import star_icon from "./icons/star_icon.svg";
-import star_dull_icon from "./icons/star_dull_icon.svg";
-import cart_icon from "./icons/cart_icon.svg";
-import nav_cart_icon from "./icons/nav_cart_icon.svg";
-import add_icon from "./icons/add_icon.svg";
-import refresh_icon from "./icons/refresh_icon.svg";
-import product_list_icon from "./icons/product_list_icon.svg";
-import order_icon from "./icons/order_icon.svg";
-import upload_area from "./icons/upload_area.png";
-import profile_icon from "./icons/profile_icon.png";
-import menu_icon from "./icons/menu_icon.svg";
-import delivery_truck_icon from "./icons/delivery_truck_icon.svg";
-import leaf_icon from "./icons/leaf_icon.svg";
-import coin_icon from "./icons/coin_icon.svg";
-import box_icon from "./icons/box_icon.svg";
-import trust_icon from "./icons/trust_icon.svg";
-import black_arrow_icon from "./icons/black_arrow_icon.svg";
-import white_arrow_icon from "./icons/white_arrow_icon.svg";
-import main_banner_bg from "./images/main_banner_bg.png";
-import main_banner_bg_sm from "./images/main_banner_bg_sm.png";
-import bottom_banner_image from "./images/bottom_banner_image.png";
-import bottom_banner_image_sm from "./images/bottom_banner_image_sm.png";
-import add_address_iamge from "./icons/add_address_image.svg";
-import organic_vegitable_image from "./images/organic_vegitable_image.png";
-import fresh_fruits_image from "./images/fresh_fruits_image.png";
-import bottles_image from "./images/bottles_image.png";
-import maggi_image from "./images/maggi_image.png";
-import dairy_product_image from "./images/dairy_product_image.png";
-import bakery_image from "./images/bakery_image.png";
-import grain_image from "./images/grain_image.png";
-import potato_image_1 from "./images/potato_image_1.png";
-import potato_image_2 from "./images/potato_image_2.png";
-import potato_image_3 from "./images/potato_image_3.png";
-import potato_image_4 from "./images/potato_image_4.png";
-import tomato_image from "./images/tomato_image.png";
-import carrot_image from "./images/carrot_image.png";
-import apple_image from "./images/apple_image.png";
-import amul_milk_image from "./images/amul_milk_image.png";
-import coca_cola_image from "./images/coca_cola_image.png";
-import brown_bread_image from "./images/brown_bread_image.png";
-import basmati_rice_image from "./images/basmati_rice_image.png";
-import paneer_image from "./images/paneer_image.png";
-import orange_image from "./images/orange_image.png";
-import pepsi_image from "./images/pepsi_image.png";
-import wheat_flour_image from "./images/wheat_flour_image.png";
-import cheese_image from "./images/cheese_image.png";
-import eggs_image from "./images/eggs_image.png";
-import spinach_image_1 from "./images/spinach_image_1.png";
-import onion_image_1 from "./images/onion_image_1.png";
-import banana_image_1 from "./images/banana_image_1.png";
-import mango_image_1 from "./images/mango_image_1.png";
-import grapes_image_1 from "./images/grapes_image_1.png";
-import paneer_image_2 from "./images/paneer_image_2.png";
-import sprite_image_1 from "./images/sprite_image_1.png";
-import fanta_image_1 from "./images/fanta_image_1.png";
-import seven_up_image_1 from "./images/seven_up_image_1.png";
-import top_ramen_image from "./images/top_ramen_image.png";
-import knorr_soup_image from "./images/knorr_soup_image.png";
-import yippee_image from "./images/yippee_image.png";
-import maggi_oats_image from "./images/maggi_oats_image.png";
-import butter_croissant_image from "./images/butter_croissant_image.png";
-import chocolate_cake_image from "./images/chocolate_cake_image.png";
-import whole_wheat_bread_image from "./images/whole_wheat_bread_image.png";
-import vanilla_muffins_image from "./images/vanilla_muffins_image.png";
-import quinoa_image from "./images/quinoa_image.png";
-import brown_rice_image from "./images/brown_rice_image.png";
-import barley_image from "./images/barley_image.png";
-
-export const assets = {
-  logo,
-  search_icon,
-  remove_icon,
-  arrow_right_icon_colored,
-  star_icon,
-  star_dull_icon,
-  cart_icon,
-  nav_cart_icon,
-  add_icon,
-  refresh_icon,
-  product_list_icon,
-  order_icon,
-  upload_area,
-  profile_icon,
-  menu_icon,
-  delivery_truck_icon,
-  leaf_icon,
-  coin_icon,
-  trust_icon,
-  black_arrow_icon,
-  white_arrow_icon,
-  main_banner_bg,
-  main_banner_bg_sm,
-  bottom_banner_image,
-  bottom_banner_image_sm,
-  add_address_iamge,
-  box_icon,
-};
-
-export const categories = [
+[
   {
-    text: "Organic veggies",
-    path: "Vegetables",
-    image: organic_vegitable_image,
-    bgColor: "#FEF6DA",
-  },
-  {
-    text: "Fresh Fruits",
-    path: "Fruits",
-    image: fresh_fruits_image,
-    bgColor: "#FEE0E0",
-  },
-  {
-    text: "Cold Drinks",
-    path: "Drinks",
-    image: bottles_image,
-    bgColor: "#F0F5DE",
-  },
-  {
-    text: "Instant Food",
-    path: "Instant",
-    image: maggi_image,
-    bgColor: "#E1F5EC",
-  },
-  {
-    text: "Dairy Products",
-    path: "Dairy",
-    image: dairy_product_image,
-    bgColor: "#FEE6CD",
-  },
-  {
-    text: "Bakery & Breads",
-    path: "Bakery",
-    image: bakery_image,
-    bgColor: "#E0F6FE",
-  },
-  {
-    text: "Grains & Cereals",
-    path: "Grains",
-    image: grain_image,
-    bgColor: "#F1E3F9",
-  },
-];
-
-export const footerLinks = [
-  {
-    title: "Quick Links",
-    links: [
-      { text: "Home", url: "#" },
-      { text: "Best Sellers", url: "#" },
-      { text: "Offers & Deals", url: "#" },
-      { text: "Contact Us", url: "#" },
-      { text: "FAQs", url: "#" },
-    ],
-  },
-  {
-    title: "Need help?",
-    links: [
-      { text: "Delivery Information", url: "#" },
-      { text: "Return & Refund Policy", url: "#" },
-      { text: "Payment Methods", url: "#" },
-      { text: "Track your Order", url: "#" },
-      { text: "Contact Us", url: "#" },
-    ],
-  },
-  {
-    title: "Follow Us",
-    links: [
-      { text: "Instagram", url: "#" },
-      { text: "Twitter", url: "#" },
-      { text: "Facebook", url: "#" },
-      { text: "YouTube", url: "#" },
-    ],
-  },
-];
-
-export const features = [
-  {
-    icon: delivery_truck_icon,
-    title: "Fastest Delivery",
-    description: "Groceries delivered in under 30 minutes.",
-  },
-  {
-    icon: leaf_icon,
-    title: "Freshness Guaranteed",
-    description: "Fresh produce straight from the source.",
-  },
-  {
-    icon: coin_icon,
-    title: "Affordable Prices",
-    description: "Quality groceries at unbeatable prices.",
-  },
-  {
-    icon: trust_icon,
-    title: "Trusted by Thousands",
-    description: "Loved by 10,000+ happy customers.",
-  },
-];
-
-export const dummyProducts = [
-  // Vegetables
-  {
-    _id: "gd46g23h",
     name: "Potato 500g",
     category: "Vegetables",
     price: 25,
     offerPrice: 20,
-    image: [potato_image_1, potato_image_2, potato_image_3, potato_image_4],
+    rating: 5,
+    image: [
+      "https://i.ibb.co/LXYwskWT/potato-image-1.png",
+      "https://i.ibb.co/NXqFgr5/potato-image-2.png",
+      "https://i.ibb.co/chTYXghP/potato-image-3.png",
+      "https://i.ibb.co/Kjf2kVfG/potato-image-4.png",
+    ],
     description: [
       "Fresh and organic",
       "Rich in carbohydrates",
@@ -219,12 +21,15 @@ export const dummyProducts = [
     inStock: true,
   },
   {
-    _id: "gd47g34h",
     name: "Tomato 1 kg",
     category: "Vegetables",
     price: 40,
     offerPrice: 35,
-    image: [tomato_image],
+    rating: 5,
+    image: [
+      "https://i.ibb.co/KzcS259r/tomato-image.png",
+      "https://i.ibb.co/4DHYn8q/tomato-image-2.png",
+    ],
     description: [
       "Juicy and ripe",
       "Rich in Vitamin C",
@@ -236,12 +41,12 @@ export const dummyProducts = [
     inStock: true,
   },
   {
-    _id: "gd48g45h",
     name: "Carrot 500g",
     category: "Vegetables",
     price: 30,
     offerPrice: 28,
-    image: [carrot_image],
+    rating: 4,
+    image: ["https://i.ibb.co/psLYWB6/carrot-image.png"],
     description: [
       "Sweet and crunchy",
       "Good for eyesight",
@@ -252,12 +57,12 @@ export const dummyProducts = [
     inStock: true,
   },
   {
-    _id: "gd49g56h",
     name: "Spinach 500g",
     category: "Vegetables",
     price: 18,
     offerPrice: 15,
-    image: [spinach_image_1],
+    rating: 4,
+    image: ["https://i.ibb.co/yFMvdkQG/spinach-image-1.png"],
     description: [
       "Rich in iron",
       "High in vitamins",
@@ -268,12 +73,12 @@ export const dummyProducts = [
     inStock: true,
   },
   {
-    _id: "gd50g67h",
     name: "Onion 500g",
     category: "Vegetables",
     price: 22,
     offerPrice: 19,
-    image: [onion_image_1],
+    rating: 4,
+    image: ["https://i.ibb.co/RqFTmQR/onion-image-1.png"],
     description: [
       "Fresh and pungent",
       "Perfect for cooking",
@@ -283,15 +88,13 @@ export const dummyProducts = [
     updatedAt: "2025-03-25T07:18:13.103Z",
     inStock: true,
   },
-
-  // Fruits
   {
-    _id: "ek51j12k",
     name: "Apple 1 kg",
     category: "Fruits",
     price: 120,
     offerPrice: 110,
-    image: [apple_image],
+    rating: 4,
+    image: ["https://i.ibb.co/jZkWXr6C/apple-image.png"],
     description: [
       "Crisp and juicy",
       "Rich in fiber",
@@ -304,12 +107,12 @@ export const dummyProducts = [
     inStock: true,
   },
   {
-    _id: "ek52j23k",
     name: "Orange 1 kg",
     category: "Fruits",
     price: 80,
     offerPrice: 75,
-    image: [orange_image],
+    rating: 5,
+    image: ["https://i.ibb.co/pjF9SXPc/orange-image.png"],
     description: [
       "Juicy and sweet",
       "Rich in Vitamin C",
@@ -320,12 +123,12 @@ export const dummyProducts = [
     inStock: true,
   },
   {
-    _id: "ek53j34k",
     name: "Banana 1 kg",
     category: "Fruits",
     price: 50,
     offerPrice: 45,
-    image: [banana_image_1],
+    rating: 4,
+    image: ["https://i.ibb.co/0R5nHrwT/banana-image-1.png"],
     description: [
       "Sweet and ripe",
       "High in potassium",
@@ -336,13 +139,12 @@ export const dummyProducts = [
     inStock: true,
   },
   {
-    _id: "ek54j45k",
     name: "Mango 1 kg",
     category: "Fruits",
-
     price: 150,
     offerPrice: 140,
-    image: [mango_image_1],
+    rating: 5,
+    image: ["https://i.ibb.co/LzHTDx26/mango-image-1.png"],
     description: [
       "Sweet and flavorful",
       "Perfect for smoothies and desserts",
@@ -353,12 +155,12 @@ export const dummyProducts = [
     inStock: true,
   },
   {
-    _id: "ek55j56k",
     name: "Grapes 500g",
     category: "Fruits",
     price: 70,
     offerPrice: 65,
-    image: [grapes_image_1],
+    rating: 5,
+    image: ["https://i.ibb.co/rK3q7WXH/grapes-image-1.png"],
     description: [
       "Fresh and juicy",
       "Rich in antioxidants",
@@ -368,15 +170,13 @@ export const dummyProducts = [
     updatedAt: "2025-03-25T07:18:13.103Z",
     inStock: true,
   },
-
-  // Dairy
   {
-    _id: "ek56j67k",
     name: "Pran Milk 1L",
     category: "Dairy",
     price: 60,
     offerPrice: 55,
-    image: [amul_milk_image],
+    rating: 5,
+    image: ["https://i.ibb.co/6cvpydJK/amul-milk-image.png"],
     description: [
       "Pure and fresh",
       "Rich in calcium",
@@ -388,12 +188,32 @@ export const dummyProducts = [
     inStock: true,
   },
   {
-    _id: "ek57j78k",
+    name: "Yogurt 250g",
+    category: "Dairy",
+    price: 60,
+    offerPrice: 55,
+    rating: 4,
+    image: ["https://i.ibb.co/hF1zP4KP/yogurt-image-1.png"],
+    description: [
+      "Creamy and fresh",
+      "Rich in probiotics",
+      "Good for digestion",
+      "Perfect for smoothies or as a snack",
+    ],
+    createdAt: "2025-03-25T07:17:46.018Z",
+    updatedAt: "2025-03-25T07:18:13.103Z",
+    inStock: true,
+  },
+  {
     name: "Paneer 200g",
     category: "Dairy",
     price: 90,
     offerPrice: 85,
-    image: [paneer_image],
+    rating: 5,
+    image: [
+      "https://i.ibb.co/zWHDK8Fc/paneer-image.png",
+      "https://i.ibb.co/S4Wn30JC/paneer-image-2.png",
+    ],
     description: [
       "Soft and fresh",
       "Rich in protein",
@@ -404,12 +224,12 @@ export const dummyProducts = [
     inStock: true,
   },
   {
-    _id: "ek58j89k",
     name: "Eggs 12 pcs",
     category: "Dairy",
     price: 90,
     offerPrice: 85,
-    image: [eggs_image],
+    rating: 5,
+    image: ["https://i.ibb.co/Q7c6R0zq/eggs-image.png"],
     description: [
       "Farm fresh",
       "Rich in protein",
@@ -420,28 +240,12 @@ export const dummyProducts = [
     inStock: true,
   },
   {
-    _id: "ek59j90k",
-    name: "Paneer 200g",
-    category: "Dairy",
-    price: 90,
-    offerPrice: 85,
-    image: [paneer_image_2],
-    description: [
-      "Soft and fresh",
-      "Rich in protein",
-      "Ideal for curries and snacks",
-    ],
-    createdAt: "2025-03-25T07:17:46.018Z",
-    updatedAt: "2025-03-25T07:18:13.103Z",
-    inStock: true,
-  },
-  {
-    _id: "ek60j01k",
     name: "Cheese 200g",
     category: "Dairy",
     price: 140,
     offerPrice: 130,
-    image: [cheese_image],
+    rating: 4,
+    image: ["https://i.ibb.co/6jM0mRf/cheese-image.png"],
     description: [
       "Creamy and delicious",
       "Perfect for pizzas and sandwiches",
@@ -451,15 +255,13 @@ export const dummyProducts = [
     updatedAt: "2025-03-25T07:18:13.103Z",
     inStock: true,
   },
-
-  // Drinks
   {
-    _id: "ek61j12k",
     name: "Coca-Cola 1.5L",
     category: "Drinks",
     price: 80,
     offerPrice: 75,
-    image: [coca_cola_image],
+    rating: 5,
+    image: ["https://i.ibb.co/dJgCBpxF/coca-cola-image.png"],
     description: [
       "Refreshing and fizzy",
       "Perfect for parties and gatherings",
@@ -470,12 +272,15 @@ export const dummyProducts = [
     inStock: true,
   },
   {
-    _id: "ek62j23k",
     name: "Pepsi 1.5L",
     category: "Drinks",
     price: 78,
     offerPrice: 73,
-    image: [pepsi_image],
+    rating: 4,
+    image: [
+      "https://i.ibb.co/Z6fm9xpP/pepsi-image.png",
+      "https://i.ibb.co/SDyJBw1c/pepsi-image-2.png",
+    ],
     description: [
       "Chilled and refreshing",
       "Perfect for celebrations",
@@ -486,12 +291,12 @@ export const dummyProducts = [
     inStock: true,
   },
   {
-    _id: "ek63j34k",
     name: "Sprite 1.5L",
     category: "Drinks",
     price: 79,
     offerPrice: 74,
-    image: [sprite_image_1],
+    rating: 3,
+    image: ["https://i.ibb.co/fzB6GpgD/sprite-image-1.png"],
     description: [
       "Refreshing citrus taste",
       "Perfect for hot days",
@@ -502,12 +307,12 @@ export const dummyProducts = [
     inStock: true,
   },
   {
-    _id: "ek64j45k",
     name: "Fanta 1.5L",
     category: "Drinks",
     price: 77,
     offerPrice: 72,
-    image: [fanta_image_1],
+    rating: 4,
+    image: ["https://i.ibb.co/psLYWB6/carrot-image.png"],
     description: [
       "Sweet and fizzy",
       "Great for parties and gatherings",
@@ -518,12 +323,12 @@ export const dummyProducts = [
     inStock: true,
   },
   {
-    _id: "ek65j56k",
     name: "7 Up 1.5L",
     category: "Drinks",
     price: 76,
     offerPrice: 71,
-    image: [seven_up_image_1],
+    rating: 4,
+    image: ["https://i.ibb.co/C30GV1Gc/seven-up-image-1.png"],
     description: [
       "Refreshing lemon-lime flavor",
       "Perfect for refreshing",
@@ -533,15 +338,13 @@ export const dummyProducts = [
     updatedAt: "2025-03-25T07:18:13.103Z",
     inStock: true,
   },
-
-  // Grains
   {
-    _id: "ek66j67k",
     name: "Basmati Rice 5kg",
     category: "Grains",
     price: 550,
     offerPrice: 520,
-    image: [basmati_rice_image],
+    rating: 5,
+    image: ["https://i.ibb.co/7dqDbrdT/basmati-rice-image.png"],
     description: [
       "Long grain and aromatic",
       "Perfect for biryani and pulao",
@@ -552,12 +355,12 @@ export const dummyProducts = [
     inStock: true,
   },
   {
-    _id: "ek67j78k",
     name: "Wheat Flour 5kg",
     category: "Grains",
     price: 250,
     offerPrice: 230,
-    image: [wheat_flour_image],
+    rating: 4,
+    image: ["https://i.ibb.co/gbSYbbxK/wheat-flour-image.png"],
     description: [
       "High-quality whole wheat",
       "Soft and fluffy rotis",
@@ -568,12 +371,12 @@ export const dummyProducts = [
     inStock: true,
   },
   {
-    _id: "ek68j89k",
     name: "Organic Quinoa 500g",
     category: "Grains",
     price: 450,
     offerPrice: 420,
-    image: [quinoa_image],
+    rating: 4,
+    image: ["https://i.ibb.co/7d4t7t58/quinoa-image.png"],
     description: [
       "High in protein and fiber",
       "Gluten-free",
@@ -584,12 +387,12 @@ export const dummyProducts = [
     inStock: true,
   },
   {
-    _id: "ek69j90k",
     name: "Brown Rice 1kg",
     category: "Grains",
     price: 120,
     offerPrice: 110,
-    image: [brown_rice_image],
+    rating: 4,
+    image: ["https://i.ibb.co/nNmnMtDG/brown-rice-image.png"],
     description: [
       "Whole grain and nutritious",
       "Helps in weight management",
@@ -600,12 +403,12 @@ export const dummyProducts = [
     inStock: true,
   },
   {
-    _id: "ek70j01k",
     name: "Barley 1kg",
     category: "Grains",
     price: 150,
     offerPrice: 140,
-    image: [barley_image],
+    rating: 4,
+    image: ["https://i.ibb.co/7tGsM9pF/barley-image.png"],
     description: [
       "Rich in fiber",
       "Helps improve digestion",
@@ -615,15 +418,13 @@ export const dummyProducts = [
     updatedAt: "2025-03-25T07:18:13.103Z",
     inStock: true,
   },
-
-  // Bakery
   {
-    _id: "bk01a24z",
     name: "Brown Bread 400g",
     category: "Bakery",
     price: 40,
     offerPrice: 35,
-    image: [brown_bread_image],
+    rating: 4,
+    image: ["https://i.ibb.co/v69KrXR6/brown-bread-image.png"],
     description: [
       "Soft and healthy",
       "Made from whole wheat",
@@ -634,12 +435,12 @@ export const dummyProducts = [
     inStock: true,
   },
   {
-    _id: "bk02b30y",
     name: "Butter Croissant 100g",
     category: "Bakery",
     price: 50,
     offerPrice: 45,
-    image: [butter_croissant_image],
+    rating: 4,
+    image: ["https://i.ibb.co/jPjJmcTJ/butter-croissant-image.png"],
     description: [
       "Flaky and buttery",
       "Freshly baked",
@@ -650,12 +451,12 @@ export const dummyProducts = [
     inStock: true,
   },
   {
-    _id: "bk03c31x",
     name: "Chocolate Cake 500g",
     category: "Bakery",
     price: 350,
     offerPrice: 325,
-    image: [chocolate_cake_image],
+    rating: 5,
+    image: ["https://i.ibb.co/QjnYGQ1B/chocolate-cake-image.png"],
     description: [
       "Rich and moist",
       "Made with premium cocoa",
@@ -666,12 +467,12 @@ export const dummyProducts = [
     inStock: true,
   },
   {
-    _id: "bk04d32w",
     name: "Whole Bread 400g",
     category: "Bakery",
     price: 45,
     offerPrice: 40,
-    image: [whole_wheat_bread_image],
+    rating: 4,
+    image: ["https://i.ibb.co/RGm2qYhf/whole-wheat-bread-image.png"],
     description: [
       "Healthy and nutritious",
       "Made with whole wheat flour",
@@ -682,12 +483,12 @@ export const dummyProducts = [
     inStock: true,
   },
   {
-    _id: "bk05e33v",
     name: "Vanilla Muffins 6 pcs",
     category: "Bakery",
     price: 100,
     offerPrice: 90,
-    image: [vanilla_muffins_image],
+    rating: 5,
+    image: ["https://i.ibb.co/TCkpdXH/vanilla-muffins-image.png"],
     description: [
       "Soft and fluffy",
       "Perfect for a quick snack",
@@ -697,16 +498,13 @@ export const dummyProducts = [
     updatedAt: "2025-03-25T07:18:13.103Z",
     inStock: true,
   },
-
-  // Instant
   {
-    _id: "in01f25u",
     name: "Maggi Noodles 280g",
     category: "Instant",
-
     price: 55,
     offerPrice: 50,
-    image: [maggi_image],
+    rating: 5,
+    image: ["https://i.ibb.co/PGq9DzxM/maggi-image.png"],
     description: [
       "Instant and easy to cook",
       "Delicious taste",
@@ -717,12 +515,12 @@ export const dummyProducts = [
     inStock: true,
   },
   {
-    _id: "in02g26t",
     name: "Top Ramen 270g",
     category: "Instant",
     price: 45,
     offerPrice: 40,
-    image: [top_ramen_image],
+    rating: 5,
+    image: ["https://i.ibb.co/zT4Dcz09/top-ramen-image.png"],
     description: [
       "Quick and easy to prepare",
       "Spicy and flavorful",
@@ -733,12 +531,12 @@ export const dummyProducts = [
     inStock: true,
   },
   {
-    _id: "in03h27s",
     name: "Knorr Cup Soup 70g",
     category: "Instant",
     price: 35,
     offerPrice: 30,
-    image: [knorr_soup_image],
+    rating: 4,
+    image: ["https://i.ibb.co/Gv2Zhrdz/knorr-soup-image.png"],
     description: [
       "Convenient for on-the-go",
       "Healthy and nutritious",
@@ -749,12 +547,12 @@ export const dummyProducts = [
     inStock: true,
   },
   {
-    _id: "in04i28r",
     name: "Yippee Noodles 260g",
     category: "Instant",
     price: 50,
     offerPrice: 45,
-    image: [yippee_image],
+    rating: 4,
+    image: ["https://i.ibb.co/j9NP1707/yippee-image.png"],
     description: [
       "Non-fried noodles for healthier choice",
       "Tasty and filling",
@@ -765,12 +563,12 @@ export const dummyProducts = [
     inStock: true,
   },
   {
-    _id: "in05j29q",
     name: "Oats Noodles 72g",
     category: "Instant",
     price: 40,
     offerPrice: 35,
-    image: [maggi_oats_image],
+    rating: 4,
+    image: ["https://i.ibb.co/GQS58Gr2/maggi-oats-image.png"],
     description: [
       "Healthy alternative with oats",
       "Good for digestion",
@@ -779,65 +577,5 @@ export const dummyProducts = [
     createdAt: "2025-03-25T07:17:46.018Z",
     updatedAt: "2025-03-25T07:18:13.103Z",
     inStock: true,
-  },
-];
-
-export const dummyAddress = [
-  {
-    _id: "67b5b9e54ea97f71bbc196a0",
-    userId: "67b5880e4d09769c5ca61644",
-    firstName: "Great",
-    lastName: "Stack",
-    email: "user.greatstack@gmail.com",
-    street: "Street 123",
-    city: "Main City",
-    state: "New State",
-    zipcode: 123456,
-    country: "IN",
-    phone: "1234567890",
-  },
-];
-
-export const dummyOrders = [
-  {
-    _id: "67e2589a8f87e63366786400",
-    userId: "67b5880e4d09769c5ca61644",
-    items: [
-      {
-        product: dummyProducts[3],
-        quantity: 2,
-        _id: "67e2589a8f87e63366786401",
-      },
-    ],
-    amount: 89,
-    address: dummyAddress[0],
-    status: "Order Placed",
-    paymentType: "Online",
-    isPaid: true,
-    createdAt: "2025-03-25T07:17:46.018Z",
-    updatedAt: "2025-03-25T07:18:13.103Z",
-  },
-  {
-    _id: "67e258798f87e633667863f2",
-    userId: "67b5880e4d09769c5ca61644",
-    items: [
-      {
-        product: dummyProducts[0],
-        quantity: 1,
-        _id: "67e258798f87e633667863f3",
-      },
-      {
-        product: dummyProducts[1],
-        quantity: 1,
-        _id: "67e258798f87e633667863f4",
-      },
-    ],
-    amount: 43,
-    address: dummyAddress[0],
-    status: "Order Placed",
-    paymentType: "COD",
-    isPaid: false,
-    createdAt: "2025-03-25T07:17:13.068Z",
-    updatedAt: "2025-03-25T07:17:13.068Z",
   },
 ];

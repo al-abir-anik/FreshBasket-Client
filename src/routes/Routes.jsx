@@ -1,8 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Root from "../layouts/Root";
-import ErrorPage from "../pages/errorPage/ErrorPage";
+import ErrorPage from "../pages/ErrorPage";
 import Home from "../pages/Home/Home";
-import AvailableFoods from "../pages/AvailableFoods";
 import FoodDetails from "../pages/FoodDetails/FoodDetails";
 import AddFood from "../pages/AddFood";
 import ManageMyFoods from "../pages/ManageMyFoods/ManageMyFoods";
@@ -12,11 +11,14 @@ import SignUp from "../pages/Register/Signup";
 import AuthRoute from "./AuthRoute";
 import PrivateRoute from "./PrivateRoute";
 import UpdateFood from "../pages/ManageMyFoods/UpdateFood";
-import ContactUs from "../pages/ContactUs/ContactUs";
+import ContactUs from "../pages/ContactUs";
 import Dashboard from "../layouts/Dashboard";
 import UserProfile from "../pages/Dashboard/UserProfile";
 import ManageProfile from "../pages/Dashboard/ManageProfile";
 import DashboardPage from "../pages/Dashboard/DashboardPage";
+import AllProducts from "../pages/AllProducts";
+import ProductDetails from "../pages/ProductDetails";
+import Cart from "../pages/Cart";
 
 const Routes = createBrowserRouter([
   {
@@ -27,30 +29,24 @@ const Routes = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
-        // loader: () =>
-        //   fetch("https://food-bridge-server-hazel.vercel.app/featuredFoods"),
       },
       {
-        path: "/availableFoods",
-        element: <AvailableFoods></AvailableFoods>,
-        //   loader: () =>
-        //     fetch("https://food-bridge-server-hazel.vercel.app/foods"),
+        path: "/all-products",
+        element: <AllProducts />,
       },
       {
         path: "/contactUs",
         element: <ContactUs></ContactUs>,
       },
       {
-        path: "/foodDetails/:id",
-        element: (
-          <PrivateRoute>
-            <FoodDetails></FoodDetails>
-          </PrivateRoute>
-        ),
+        path: "/product/:id",
+        element: <ProductDetails />,
         loader: ({ params }) =>
-          fetch(
-            `https://food-bridge-server-hazel.vercel.app/foods/${params.id}`
-          ),
+          fetch(`http://localhost:3000/product/${params.id}`),
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
       },
       {
         path: "/addFood",

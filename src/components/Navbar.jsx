@@ -28,7 +28,6 @@ const Navbar = ({ setShowRegister }) => {
         <NavLink to={"/"}>Home</NavLink>
         <NavLink to={"/all-products"}>All Products</NavLink>
         {user && <NavLink to={"/"}>My Orders</NavLink>}
-        <NavLink to={""}>Contact</NavLink>
 
         <div className="hidden lg:flex items-center text-sm gap-2 border border-gray-300 px-3 rounded-full">
           <input
@@ -108,13 +107,6 @@ const Navbar = ({ setShowRegister }) => {
             My Orders
           </NavLink>
         )}
-        <NavLink
-          to={"/all-products"}
-          onClick={() => setOpen(false)}
-          className="block"
-        >
-          Contact
-        </NavLink>
 
         {user ? (
           <button className="cursor-pointer transition text-red-400 rounded-full text-sm">
@@ -122,11 +114,12 @@ const Navbar = ({ setShowRegister }) => {
           </button>
         ) : (
           <div className="space-x-6">
-            <Link to={"/login"}>
-              <button className="cursor-pointer px-6 py-2 mt-2 bg-primary hover:bg-primary-dull transition text-white rounded-full text-sm">
-                Login
-              </button>
-            </Link>
+            <button
+              onClick={() => setShowRegister(true)}
+              className="cursor-pointer px-6 py-2 mt-2 bg-primary hover:bg-primary-dull transition text-white rounded-full text-sm"
+            >
+              Login
+            </button>
           </div>
         )}
       </div>

@@ -13,3 +13,25 @@
   --color-offwhite: #f0f2fa;
   --color-black: #010101;
 }
+
+/* Loading Spinner */
+.loader {
+  width: 70px;
+  height: 70px;
+}
+.loader::before {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border-top: 3px solid #4fbf8b;
+  border-right: 2px solid transparent;
+  animation: spinner8217 0.8s linear infinite;
+}
+@keyframes spinner8217 {
+  to {
+    transform: rotate(360deg);
+  }
+}
