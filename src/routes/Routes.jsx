@@ -2,7 +2,6 @@ import { createBrowserRouter } from "react-router-dom";
 import Root from "../layouts/Root";
 import ErrorPage from "../pages/ErrorPage";
 import Home from "../pages/Home/Home";
-import FoodDetails from "../pages/FoodDetails/FoodDetails";
 import AddFood from "../pages/AddFood";
 import ManageMyFoods from "../pages/ManageMyFoods/ManageMyFoods";
 import MyFoodRequest from "../pages/MyFoodRequest";
@@ -18,7 +17,7 @@ import ManageProfile from "../pages/Dashboard/ManageProfile";
 import DashboardPage from "../pages/Dashboard/DashboardPage";
 import AllProducts from "../pages/AllProducts";
 import ProductDetails from "../pages/ProductDetails";
-import Cart from "../pages/Cart";
+import Cart from "../pages/Cart/Cart";
 
 const Routes = createBrowserRouter([
   {

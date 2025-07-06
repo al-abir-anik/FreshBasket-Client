@@ -6,7 +6,7 @@ import { LuSearch } from "react-icons/lu";
 import { RiMenu3Fill } from "react-icons/ri";
 import { PiShoppingCartSimple } from "react-icons/pi";
 
-const Navbar = ({ setShowRegister }) => {
+const Navbar = ({ setShowRegisterForm }) => {
   const navigate = useNavigate();
   const { user, signOutUser } = useContext(AuthContext);
   const [open, setOpen] = useState(false);
@@ -68,7 +68,7 @@ const Navbar = ({ setShowRegister }) => {
         ) : (
           <div className="space-x-6">
             <button
-              onClick={() => setShowRegister(true)}
+              onClick={() => setShowRegisterForm(true)}
               className="cursor-pointer px-8 py-2 bg-primary hover:bg-primary-dull transition text-white rounded-full"
             >
               Login
@@ -115,7 +115,7 @@ const Navbar = ({ setShowRegister }) => {
         ) : (
           <div className="space-x-6">
             <button
-              onClick={() => setShowRegister(true)}
+              onClick={() => setShowRegisterForm(true)}
               className="cursor-pointer px-6 py-2 mt-2 bg-primary hover:bg-primary-dull transition text-white rounded-full text-sm"
             >
               Login

@@ -1,42 +1,48 @@
 import { useContext, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import AuthContext from "../auth/AuthContext";
+import { useForm } from "react-hook-form";
 
-const Register = ({ setShowRegister }) => {
-  const [state, setState] = useState("login");
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const { loginUser, setUser, createUser, updateUserProfile } =
+const Register = ({ setShowRegisterForm }) => {
+  const { loginUser, setUser, createUser, updateUserProfile, setLoading } =
     useContext(AuthContext);
+  const [state, setState] = useState("login");
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
 
-  const onLoginSubmit = (data) => {
-    const { email, password } = data;
-    
+  const onLoginSubmit = (email, password) => {
     loginUser(email, password)
       .then((result) => {
         console.log(result.user);
       })
-      .catch((error) => console.log(error.message));
+      .catch((error) => {
+        console.log(error.message);
+        setLoading(false);
+      });
   };
 
-  const onSignupSubmit = (data) => {
-    const { fullname, photoUrl, email, password } = data;
-
+  const onSignupSubmit = (name, email, password) => {
     createUser(email, password)
       .then((result) => {
         console.log(result.user);
         const updateUser = result.user;
         setUser(updateUser);
-        updateUserProfile({ displayName: fullname, photoURL: photoUrl });
+        updateUserProfile({ displayName: name });
+        // , photoURL: photoUrl
       })
-      .catch((error) => console.log(error.message));
+      .catch((error) => {
+        console.log(error.message);
+        setLoading(false);
+      });
   };
 
   // Unified form submit handler
-  const handleRegister = (e) => {
-    e.preventDefault();
+  const userRegister = (data) => {
+    const { name, email, password } = data;
     if (state === "login") {
       onLoginSubmit(email, password);
     } else {
@@ -46,11 +52,11 @@ const Register = ({ setShowRegister }) => {
 
   return (
     <div
-      onClick={() => setShowRegister(false)}
+      onClick={() => setShowRegisterForm(false)}
       className="fixed top-0 bottom-0 left-0 right-0 z-99 flex items-center text-sm text-gray-600 bg-black/50"
     >
       <form
-        onSubmit={handleRegister}
+        onSubmit={handleSubmit(userRegister)}
         onClick={(e) => e.stopPropagation()}
         className="flex flex-col gap-3 m-auto items-start p-8 py-10 w-80 sm:w-[352px] rounded-lg shadow-xl border border-gray-200 bg-white"
       >
@@ -58,50 +64,82 @@ const Register = ({ setShowRegister }) => {
           <span className="text-primary">User</span>{" "}
           {state === "login" ? "Login" : "Signup"}
         </p>
-        {state === "register" && (
+
+        {/* name */}
+        {state === "signup" && (
           <div className="w-full">
             <p>Name</p>
             <input
-              onChange={(e) => setName(e.target.value)}
-              value={name}
-              placeholder="type here"
+              placeholder="enter your name"
               className="border border-gray-200 rounded w-full p-2 mt-1 outline-primary"
+              {...register("name", {
+                minLength: {
+                  value: 3,
+                  message: "name should be at least 3 char.",
+                },
+              })}
               type="text"
               required
             />
+            {errors.name && (
+              <p className="text-red-600">{errors.name.message}</p>
+            )}
           </div>
         )}
-        <div className="w-full ">
+
+        {/* email */}
+        <div className="w-full">
           <p>Email</p>
           <input
-            onChange={(e) => setEmail(e.target.value)}
-            value={email}
-            placeholder="type here"
+            placeholder="enter your email"
             className="border border-gray-200 rounded w-full p-2 mt-1 outline-primary"
+            {...register("email", {
+              minLength: {
+                value: 9,
+                message: "enter a valid email.",
+              },
+            })}
             type="email"
             required
           />
+          {errors.email && (
+            <p className="text-red-400 text-xs mt-2">{errors.email.message}</p>
+          )}
         </div>
-        <div className="w-full ">
+
+        {/* password */}
+        <div className="w-full">
           <p>Password</p>
           <input
-            onChange={(e) => setPassword(e.target.value)}
-            value={password}
-            placeholder="type here"
+            placeholder="enter your password"
             className="border border-gray-200 rounded w-full p-2 mt-1 outline-primary"
+            {...register("password", {
+              minLength: {
+                value: 2,
+                message: "valid pass.",
+              },
+            })}
             type="password"
             required
           />
+          {errors.password && (
+            <p className="text-red-400 text-xs mt-2">
+              {errors.password.message}
+            </p>
+          )}
+          {/* <a className="flex justify-end mt-2 font-bold text-sm text-blue-500 hover:text-blue-700">
+            Forgot Password?
+          </a> */}
         </div>
 
         <button
           type="submit"
           className="bg-primary hover:bg-primary-dull transition-all text-white w-full py-2 mt-1 rounded-md cursor-pointer"
         >
-          {state === "register" ? "Create Account" : "Login"}
+          {state === "signup" ? "Create Account" : "Login"}
         </button>
 
-        {state === "register" ? (
+        {state === "signup" ? (
           <p className="mx-auto">
             Already have an account?{" "}
             <span
@@ -115,7 +153,7 @@ const Register = ({ setShowRegister }) => {
           <p className="mx-auto">
             Don&apos;t have an account?{" "}
             <span
-              onClick={() => setState("register")}
+              onClick={() => setState("signup")}
               className="text-primary cursor-pointer"
             >
               Signup

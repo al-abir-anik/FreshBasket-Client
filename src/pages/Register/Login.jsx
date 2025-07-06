@@ -43,7 +43,7 @@ const LogIn = () => {
               {...register("email", {
                 minLength: {
                   value: 2,
-                  message: "Movie Title should be at least 2 characters.",
+                  message: "Movie  Title should be at least 2 characters.",
                 },
               })}
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500"

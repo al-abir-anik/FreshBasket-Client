@@ -6,19 +6,21 @@ import { useState } from "react";
 
 const Root = () => {
   const isSellerPath = useLocation().pathname.includes("seller");
-  const [showRegister, setShowRegister] = useState(false);
+  const [showRegisterForm, setShowRegisterForm] = useState(false);
 
   return (
     <div className="flex flex-col min-h-screen">
       {/* {isSellerPath ? null : <Navbar />} */}
-      <Navbar setShowRegister={setShowRegister} />
+      <Navbar setShowRegisterForm={setShowRegisterForm} />
       <main className="flex flex-col flex-grow">
         <Outlet />
       </main>
       <Footer />
 
       {/* Authentication Form Modal */}
-      {showRegister && <Register setShowRegister={setShowRegister} />}
+      {showRegisterForm && (
+        <Register setShowRegisterForm={setShowRegisterForm} />
+      )}
     </div>
   );
 };
