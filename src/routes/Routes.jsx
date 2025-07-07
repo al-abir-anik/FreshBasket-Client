@@ -9,16 +9,17 @@ import LockRoute from "./LockRoute";
 import PrivateRoute from "./PrivateRoute";
 import UpdateFood from "../pages/ManageMyFoods/UpdateFood";
 import ContactUs from "../pages/ContactUs";
-import Dashboard from "../layouts/Dashboard";
 import UserProfile from "../pages/Dashboard/UserProfile";
 import ManageProfile from "../pages/Dashboard/ManageProfile";
-import DashboardPage from "../pages/Dashboard/DashboardPage";
 import AllProducts from "../pages/AllProducts";
 import ProductDetails from "../pages/ProductDetails";
 import Cart from "../pages/Cart/Cart";
 import MyOrders from "../pages/MyOrders";
-import AdminLogin from "../components/admin/AdminLogin";
+import AdminRoute from "./AdminRoute";
 import AdminLayout from "../layouts/AdminLayout";
+import AddProduct from "../pages/admin/AddProduct";
+import ProductList from "../pages/admin/ProductList";
+import Orders from "../pages/admin/Orders";
 
 const Routes = createBrowserRouter([
   {
@@ -94,16 +95,24 @@ const Routes = createBrowserRouter([
     path: "/admin",
     element: (
       <PrivateRoute>
-        {/* <Dashboard></Dashboard> */}
-        {/* <AdminLogin /> */}
-        <AdminLayout />
+        <AdminRoute>
+          <AdminLayout />
+        </AdminRoute>
       </PrivateRoute>
     ),
     errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/admin",
-        // element: <AdminLayout />,
+        element: <AddProduct />,
+      },
+      {
+        path: "product-list",
+        element: <ProductList />,
+      },
+      {
+        path: "orders",
+        element: <Orders />,
       },
       {
         path: "userProfile",

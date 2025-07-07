@@ -25,6 +25,7 @@ const Navbar = ({ setShowRegisterForm }) => {
 
       {/* Desktop Menu */}
       <div className="hidden sm:flex items-center gap-8">
+        {user && <NavLink to={"/admin"}>Admin Dashboard</NavLink>}
         <NavLink to={"/"}>Home</NavLink>
         <NavLink to={"/all-products"}>All Products</NavLink>
         {user && <NavLink to={"/my-orders"}>My Orders</NavLink>}

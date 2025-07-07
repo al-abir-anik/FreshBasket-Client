@@ -1,14 +1,8 @@
-import { useContext } from "react";
-import AuthContext from "../auth/AuthContext";
-import AdminLogin from "../components/admin/AdminLogin";
-import DashboardPage from "../pages/Dashboard/DashboardPage";
-import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 import { assets } from "../assets/assets";
 import { useAdminContext } from "../contexts/AdminContext";
 
 const AdminLayout = () => {
-  const isAdminPath = useLocation().pathname.includes("admin");
-  const { user, loading } = useContext(AuthContext);
   const { setIsAdmin } = useAdminContext();
 
   const handleAdminLogout = () => {
@@ -16,18 +10,18 @@ const AdminLayout = () => {
   };
 
   const sidebarLinks = [
-    { name: "Add Product", path: "/seller", icon: assets.add_icon },
+    { name: "Add Product", path: "/admin", icon: assets.add_icon },
     {
       name: "Product List",
-      path: "/seller/product-list",
+      path: "/admin/product-list",
       icon: assets.product_list_icon,
     },
-    { name: "Orders", path: "/seller/orders", icon: assets.order_icon },
+    { name: "Orders", path: "/admin/orders", icon: assets.order_icon },
   ];
 
   return (
     <>
-      <nav className="w-11/12 mx-auto py-4 flex items-center justify-between bg-white">
+      <nav className="w-full px-10 mx-auto py-4 flex items-center justify-between bg-white">
         <Link to="/">
           <img src={assets.logo} alt="logo" className="w-34 md:w-38" />
         </Link>
@@ -43,14 +37,14 @@ const AdminLayout = () => {
       </nav>
       <hr className="w-full border-gray-300" />
 
-      <div className="flex min-h-screen">
-        <aside className="md:w-64 w-16 border-r h-[550px] text-base border-gray-300 pt-4 flex flex-col transition-all duration-300">
+      <div className="w-full flex min-h-screen">
+        <aside className="w-16 md:w-1/6 pt-6 border-r border-gray-300 flex flex-col">
           {sidebarLinks.map((item) => (
             <NavLink
               to={item.path}
               key={item.name}
-              // end={item.path === "/seller"}
-              className={({ isActive }) => `flex items-center py-3 px-4 gap-3 
+              end={item.path === "/admin"}
+              className={({ isActive }) => `flex items-center py-3 px-8 gap-4 
                             ${
                               isActive
                                 ? "border-r-4 md:border-r-[6px] bg-primary/10 border-primary text-primary"
@@ -63,7 +57,7 @@ const AdminLayout = () => {
           ))}
         </aside>
 
-        <main className="">
+        <main className="w-full">
           <Outlet />
         </main>
       </div>
