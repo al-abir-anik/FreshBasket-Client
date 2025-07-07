@@ -4,6 +4,9 @@
 
 ---
 
+
+I struggled in cart backend functionality. if user exist i have to post new cartlist doc for the user and show the add to cart button to Added in frontend. and if user already has a cartlist doc then show a alert and add to cart button automatically show Added.
+
 ## 🌍 Live Website  
 Visit the live website here: [FoodBridge](https://alabiranik-food-bridge.surge.sh/)
 

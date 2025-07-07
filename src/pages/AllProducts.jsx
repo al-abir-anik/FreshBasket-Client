@@ -1,9 +1,12 @@
-import { useEffect, useState } from "react";
-import { dummyProducts } from "../assets/assets";
+import { useEffect, useState, useContext } from "react";
 import ProductCard from "../components/ProductCard";
+import AuthContext from "../auth/AuthContext";
+import axios from "axios";
 
 const AllProducts = () => {
+  const { user } = useContext(AuthContext);
   const [products, setProducts] = useState([]);
+  const [cartProduct, setCartProduct] = useState([]);
 
   useEffect(() => {
     fetch(`http://localhost:3000/all-products`)
@@ -16,9 +19,22 @@ const AllProducts = () => {
       });
   }, []);
 
-  // useEffect(() => {
-  //   setProducts(dummyProducts);
-  // }, []);
+  const handleProductCartBtn = async (id) => {
+    const res = await axios.post(`http://localhost:3000/add-to-cart`, {
+      email: user?.email,
+      productId: id,
+    });
+
+    if (res.data.modifiedCount > 0) {
+      const updated = await fetch(
+        `http://localhost:3000/user-cartlist?email=${user?.email}`
+      );
+      const newData = await updated.json();
+      setCartProduct(newData);
+    } else {
+      console.error("Product added failed");
+    }
+  };
 
   return (
     <div className="w-4/5 mx-auto mt-16">
@@ -30,7 +46,12 @@ const AllProducts = () => {
       </div>
       <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 gap-3 md:gap-6">
         {products.map((p) => (
-          <ProductCard key={p._id} product={p} />
+          <ProductCard
+            key={p._id}
+            product={p}
+            cartProduct={cartProduct}
+            handleProductCartBtn={handleProductCartBtn}
+          />
         ))}
       </div>
     </div>

@@ -1,13 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
-import Root from "../layouts/Root";
+import RootLayout from "../layouts/RootLayout";
 import ErrorPage from "../pages/ErrorPage";
 import Home from "../pages/Home/Home";
-import AddFood from "../pages/AddFood";
 import ManageMyFoods from "../pages/ManageMyFoods/ManageMyFoods";
-import MyFoodRequest from "../pages/MyFoodRequest";
 import LogIn from "../pages/Register/Login";
 import SignUp from "../pages/Register/Signup";
-import AuthRoute from "./AuthRoute";
+import LockRoute from "./LockRoute";
 import PrivateRoute from "./PrivateRoute";
 import UpdateFood from "../pages/ManageMyFoods/UpdateFood";
 import ContactUs from "../pages/ContactUs";
@@ -18,11 +16,14 @@ import DashboardPage from "../pages/Dashboard/DashboardPage";
 import AllProducts from "../pages/AllProducts";
 import ProductDetails from "../pages/ProductDetails";
 import Cart from "../pages/Cart/Cart";
+import MyOrders from "../pages/MyOrders";
+import AdminLogin from "../components/admin/AdminLogin";
+import AdminLayout from "../layouts/AdminLayout";
 
 const Routes = createBrowserRouter([
   {
     path: "/",
-    element: <Root />,
+    element: <RootLayout />,
     errorElement: <ErrorPage />,
     children: [
       {
@@ -32,6 +33,10 @@ const Routes = createBrowserRouter([
       {
         path: "/all-products",
         element: <AllProducts />,
+      },
+      {
+        path: "/my-orders",
+        element: <MyOrders />,
       },
       {
         path: "/contactUs",
@@ -46,14 +51,6 @@ const Routes = createBrowserRouter([
       {
         path: "/cart",
         element: <Cart />,
-      },
-      {
-        path: "/addFood",
-        element: (
-          <PrivateRoute>
-            <AddFood></AddFood>
-          </PrivateRoute>
-        ),
       },
       {
         path: "/manageMyFoods",
@@ -76,43 +73,37 @@ const Routes = createBrowserRouter([
           ),
       },
       {
-        path: "/myFoodRequest",
-        element: (
-          <PrivateRoute>
-            <MyFoodRequest></MyFoodRequest>
-          </PrivateRoute>
-        ),
-      },
-      {
         path: "/login",
         element: (
-          <AuthRoute>
+          <LockRoute>
             <LogIn></LogIn>
-          </AuthRoute>
+          </LockRoute>
         ),
       },
       {
         path: "/signup",
         element: (
-          <AuthRoute>
+          <LockRoute>
             <SignUp></SignUp>
-          </AuthRoute>
+          </LockRoute>
         ),
       },
     ],
   },
   {
-    path: "/dashboard",
+    path: "/admin",
     element: (
       <PrivateRoute>
-        <Dashboard></Dashboard>
+        {/* <Dashboard></Dashboard> */}
+        {/* <AdminLogin /> */}
+        <AdminLayout />
       </PrivateRoute>
     ),
     errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
-        path: "/dashboard",
-        element: <DashboardPage></DashboardPage>,
+        path: "/admin",
+        // element: <AdminLayout />,
       },
       {
         path: "userProfile",

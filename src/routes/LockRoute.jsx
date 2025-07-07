@@ -2,7 +2,7 @@ import { useContext } from "react";
 import AuthContext from "../auth/AuthContext";
 import { Navigate } from "react-router-dom";
 
-const AuthRoute = ({ children }) => {
+const LockRoute = ({ children }) => {
   const { user } = useContext(AuthContext);
 
   if (!user) {
@@ -12,4 +12,4 @@ const AuthRoute = ({ children }) => {
   return <Navigate to={"/"}></Navigate>;
 };
 
-export default AuthRoute;
+export default LockRoute;

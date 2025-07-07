@@ -27,7 +27,7 @@ const Navbar = ({ setShowRegisterForm }) => {
       <div className="hidden sm:flex items-center gap-8">
         <NavLink to={"/"}>Home</NavLink>
         <NavLink to={"/all-products"}>All Products</NavLink>
-        {user && <NavLink to={"/"}>My Orders</NavLink>}
+        {user && <NavLink to={"/my-orders"}>My Orders</NavLink>}
 
         <div className="hidden lg:flex items-center text-sm gap-2 border border-gray-300 px-3 rounded-full">
           <input
@@ -55,7 +55,7 @@ const Navbar = ({ setShowRegisterForm }) => {
             />
             <ul className="w-32 py-2.5 hidden group-hover:block absolute top-10 right-0 bg-white shadow border border-gray-200 rounded-md text-sm z-40">
               <li className="p-1.5 pl-5 hover:bg-primary/10 cursor-pointer">
-                My Orders
+                Profile
               </li>
               <li
                 className="p-1.5 pl-5 text-red-400 hover:bg-red-50 cursor-pointer"

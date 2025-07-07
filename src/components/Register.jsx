@@ -2,11 +2,14 @@ import { useContext, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import AuthContext from "../auth/AuthContext";
 import { useForm } from "react-hook-form";
+import { LuEye } from "react-icons/lu";
+import { LuEyeOff } from "react-icons/lu";
 
 const Register = ({ setShowRegisterForm }) => {
   const { loginUser, setUser, createUser, updateUserProfile, setLoading } =
     useContext(AuthContext);
   const [state, setState] = useState("login");
+  const [showPassword, setShowPassword] = useState(true);
   const {
     register,
     handleSubmit,
@@ -24,7 +27,6 @@ const Register = ({ setShowRegisterForm }) => {
         setLoading(false);
       });
   };
-
   const onSignupSubmit = (name, email, password) => {
     createUser(email, password)
       .then((result) => {
@@ -110,26 +112,32 @@ const Register = ({ setShowRegisterForm }) => {
         {/* password */}
         <div className="w-full">
           <p>Password</p>
-          <input
-            placeholder="enter your password"
-            className="border border-gray-200 rounded w-full p-2 mt-1 outline-primary"
-            {...register("password", {
-              minLength: {
-                value: 2,
-                message: "valid pass.",
-              },
-            })}
-            type="password"
-            required
-          />
+          <div className="relative">
+            <input
+              placeholder="enter your password"
+              className="border border-gray-200 rounded w-full p-2 mt-1 outline-primary"
+              {...register("password", {
+                minLength: {
+                  value: 2,
+                  message: "valid pass.",
+                },
+              })}
+              type={showPassword ? "text" : "password"}
+              required
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="p-2 absolute top-2 right-1 text-gray-400 cursor-pointer"
+            >
+              {showPassword ? <LuEyeOff /> : <LuEye />}
+            </button>
+          </div>
           {errors.password && (
             <p className="text-red-400 text-xs mt-2">
               {errors.password.message}
             </p>
           )}
-          {/* <a className="flex justify-end mt-2 font-bold text-sm text-blue-500 hover:text-blue-700">
-            Forgot Password?
-          </a> */}
         </div>
 
         <button

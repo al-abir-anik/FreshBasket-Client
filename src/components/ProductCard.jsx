@@ -1,15 +1,11 @@
-import { useState } from "react";
 import { PiShoppingCartSimple } from "react-icons/pi";
 import { assets } from "../assets/assets";
 import { Link } from "react-router-dom";
 import { FiCheck } from "react-icons/fi";
+import { useState } from "react";
 
-const ProductCard = ({ product }) => {
-  const [isAdded, setIsAdded] = useState(false);
-
-  const handleAddToCart = () => {
-
-  };
+const ProductCard = ({ product, cartProduct ,handleProductCartBtn }) => {
+  const isCarted = cartProduct?.some((p) => p._id === product._id);
 
   return (
     <div className="border border-gray-500/20 rounded-md md:px-4 px-3 py-2 bg-white min-w-56 max-w-56 w-full">
@@ -51,9 +47,9 @@ const ProductCard = ({ product }) => {
 
           <button
             className="p-2 bg-green-50 border border-primary/30 rounded text-primary-dull font-medium cursor-pointer"
-            onClick={() => setIsAdded(true)}
+            onClick={() => handleProductCartBtn(product._id)}
           >
-            {isAdded ? (
+            {isCarted ? (
               <span className="flex items-center justify-center gap-1">
                 <FiCheck />
                 Added

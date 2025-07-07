@@ -1,11 +1,13 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { assets, dummyAddress } from "../../assets/assets";
 import { MdDeleteOutline } from "react-icons/md";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import CheckoutForm from "./CheckoutForm";
+import AuthContext from "../../auth/AuthContext";
 
 const Cart = () => {
+  const { user } = useContext(AuthContext);
   const [cartlist, setCartlist] = useState([]);
   const [addresses, setAddresses] = useState(dummyAddress);
   const [selectedAddress, setSelectedAddress] = useState(dummyAddress[0]);
@@ -13,7 +15,7 @@ const Cart = () => {
   const [qtyLoading, setQtyLoading] = useState({});
 
   useEffect(() => {
-    fetch(`http://localhost:3000/user-cartlist`)
+    fetch(`http://localhost:3000/user-cartlist?email=${user?.email}`)
       .then((res) => res.json())
       .then((data) => {
         setCartlist(data);
