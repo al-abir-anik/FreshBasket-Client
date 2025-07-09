@@ -6,7 +6,7 @@ const AdminLogin = () => {
   const { isAdmin, setIsAdmin } = useAdminContext();
   const navigate = useNavigate();
   const [email, setEmail] = useState("test@admin.com");
-  const [password, setPassword] = useState("");
+  const [password, setPassword] = useState("testxdjtjmtgmjk");
 
   const handleAdminLogin = async (event) => {
     event.preventDefault();

@@ -1,4 +1,4 @@
-import AdminLogin from "../components/admin/AdminLogin";
+import AdminLogin from "../pages/admin/AdminLogin";
 import { useAdminContext } from "../contexts/AdminContext";
 
 const AdminRoute = ({ children }) => {

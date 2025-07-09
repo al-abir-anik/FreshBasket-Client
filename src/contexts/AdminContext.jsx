@@ -4,7 +4,7 @@ import AuthContext from "../auth/AuthContext";
 export const AdminContext = createContext(null);
 
 export const AdminContextProvider = ({ children }) => {
-  const { loading, setLoading } = useContext(AuthContext);
+  const { loading } = useContext(AuthContext);
   const [isAdmin, setIsAdmin] = useState(false);
 
   const adminInfo = { isAdmin, setIsAdmin };

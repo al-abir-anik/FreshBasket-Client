@@ -21,7 +21,7 @@ const AdminLayout = () => {
 
   return (
     <>
-      <nav className="w-full px-10 mx-auto py-4 flex items-center justify-between bg-white">
+      <nav className="w-full px-5 md:px-10 mx-auto py-4 flex items-center justify-between bg-white">
         <Link to="/">
           <img src={assets.logo} alt="logo" className="w-34 md:w-38" />
         </Link>
@@ -29,7 +29,7 @@ const AdminLayout = () => {
           <p>Hi! Admin</p>
           <button
             onClick={handleAdminLogout}
-            className="border rounded-full text-sm px-4 py-1"
+            className="px-4 py-1 text-sm text-red-500 border border-red-400 hover:bg-red-50 rounded-full cursor-pointer"
           >
             Logout
           </button>
@@ -38,13 +38,15 @@ const AdminLayout = () => {
       <hr className="w-full border-gray-300" />
 
       <div className="w-full flex min-h-screen">
-        <aside className="w-16 md:w-1/6 pt-6 border-r border-gray-300 flex flex-col">
+        <aside className="w-16 md:w-1/4 xl:w-1/6 pt-6 border-r border-gray-300 flex flex-col">
           {sidebarLinks.map((item) => (
             <NavLink
               to={item.path}
               key={item.name}
               end={item.path === "/admin"}
-              className={({ isActive }) => `flex items-center py-3 px-8 gap-4 
+              className={({
+                isActive,
+              }) => `flex items-center py-3 px-4 lg:px-8 gap-2 lg:gap-4 
                             ${
                               isActive
                                 ? "border-r-4 md:border-r-[6px] bg-primary/10 border-primary text-primary"
@@ -57,7 +59,7 @@ const AdminLayout = () => {
           ))}
         </aside>
 
-        <main className="w-full">
+        <main className="w-full p-4 md:px-10 md:py-5 lg:px-20 lg:py-10">
           <Outlet />
         </main>
       </div>

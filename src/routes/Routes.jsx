@@ -3,8 +3,6 @@ import RootLayout from "../layouts/RootLayout";
 import ErrorPage from "../pages/ErrorPage";
 import Home from "../pages/Home/Home";
 import ManageMyFoods from "../pages/ManageMyFoods/ManageMyFoods";
-import LogIn from "../pages/Register/Login";
-import SignUp from "../pages/Register/Signup";
 import LockRoute from "./LockRoute";
 import PrivateRoute from "./PrivateRoute";
 import UpdateFood from "../pages/ManageMyFoods/UpdateFood";
@@ -72,22 +70,6 @@ const Routes = createBrowserRouter([
           fetch(
             `https://food-bridge-server-hazel.vercel.app/foods/${params.id}`
           ),
-      },
-      {
-        path: "/login",
-        element: (
-          <LockRoute>
-            <LogIn></LogIn>
-          </LockRoute>
-        ),
-      },
-      {
-        path: "/signup",
-        element: (
-          <LockRoute>
-            <SignUp></SignUp>
-          </LockRoute>
-        ),
       },
     ],
   },
