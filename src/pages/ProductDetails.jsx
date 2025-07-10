@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { assets } from "../assets/assets";
+import ProductCard from "../components/ProductCard";
 
 const ProductDetails = () => {
   const product = useLoaderData();
@@ -18,9 +19,18 @@ const ProductDetails = () => {
     inStock,
   } = product;
   const [thumbnail, setThumbnail] = useState(image[0]);
-  const [relatedProducts, setRelatedProducts] = useState(image[0]);
+  const [relatedProducts, setRelatedProducts] = useState([]);
 
-  console.log(image);
+  useEffect(() => {
+    fetch(`http://localhost:3000/related-products?id=${_id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setRelatedProducts(data);
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  }, [_id]);
 
   return (
     <div className="w-5/6 lg:w-3/4 xl:w-2/3 mx-auto mt-16">
@@ -79,8 +89,15 @@ const ProductDetails = () => {
               <li key={index}>{desc}</li>
             ))}
           </ul>
+          <p
+            className={`text-lg font-medium mt-6 ${
+              inStock ? "text-primary" : "text-red-400"
+            }`}
+          >
+            {inStock ? "In Stock" : "Stock Out"}
+          </p>
           {/* Buttons */}
-          <div className="flex items-center mt-10 gap-4 text-base">
+          <div className="w-3/4 flex items-center mt-10 gap-4 text-base">
             <button className="w-full py-3.5 cursor-pointer font-medium bg-gray-100 text-gray-800/80 hover:bg-gray-200 transition">
               Add to Cart
             </button>
@@ -91,19 +108,16 @@ const ProductDetails = () => {
         </div>
       </div>
 
-
       {/* ------Related Products-------- */}
-      <div className="flex flex-col items-center mt-24">
-        <div className="flex flex-col items-center w-max">
+      <div className="flex flex-col items-center mt-16">
+        <div className="py-10 flex flex-col items-center w-max">
           <h3 className="text-3xl font-medium">Related Products</h3>
           <div className="w-20 h-0.5 bg-primary rounded-full mt-2"></div>
         </div>
-        <div className="w-full mt-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 md:gap-6 ">
-          {
-            <p>
-              Filter Related product by same category and show them by using map{" "}
-            </p>
-          }
+        <div className="w-full flex flex-wrap justify-evenly gap-3 md:gap-6">
+          {relatedProducts.map((p) => (
+            <ProductCard key={p._id} product={p} />
+          ))}
         </div>
         <button
           onClick={() =>

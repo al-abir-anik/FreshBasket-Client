@@ -23,7 +23,10 @@ const AdminLayout = () => {
     <>
       <nav className="w-full px-5 md:px-10 mx-auto py-4 flex items-center justify-between bg-white">
         <Link to="/">
-          <img src={assets.logo} alt="logo" className="w-34 md:w-38" />
+          {/* <img src={assets.logo} alt="logo" className="w-34 md:w-38" /> */}
+          <p className="text-2xl font-black text-primary">
+          <span className="text-3xl">F</span>RESH<span className="text-black">BASKET</span>
+        </p>
         </Link>
         <div className="flex items-center gap-5 text-gray-500">
           <p>Hi! Admin</p>

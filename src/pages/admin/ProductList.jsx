@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
@@ -13,6 +15,20 @@ const ProductList = () => {
         console.log(error.message);
       });
   }, []);
+
+  const handleChangeStock = async (id, updateStock) => {
+    const res = await axios.patch(`http://localhost:3000/change-stock`, {
+      productId: id,
+      inStock: updateStock,
+    });
+
+    if (res.data.modifiedCount > 0) {
+      toast.success("Stock updated");
+    } else {
+      console.error("Stock update failed");
+      toast.error("Stock update failed");
+    }
+  };
 
   return (
     <div className=" w-full flex-1 flex flex-col justify-between">
@@ -49,6 +65,9 @@ const ProductList = () => {
                 <td className="px-4 py-3">
                   <label className="relative inline-flex items-center cursor-pointer text-gray-900 gap-3">
                     <input
+                      onChange={(e) =>
+                        handleChangeStock(product._id, e.target.checked)
+                      }
                       type="checkbox"
                       className="sr-only peer"
                       defaultChecked={product.inStock}

@@ -2,10 +2,14 @@ import { PiShoppingCartSimple } from "react-icons/pi";
 import { assets } from "../assets/assets";
 import { Link } from "react-router-dom";
 import { FiCheck } from "react-icons/fi";
-import { useState } from "react";
+import { useAppContext } from "../contexts/AppContext";
 
-const ProductCard = ({ product, cartProduct ,handleProductCartBtn }) => {
-  const isCarted = cartProduct?.some((p) => p._id === product._id);
+const ProductCard = ({ product, handleAddCartBtn, btnLoading }) => {
+  const { cartProduct } = useAppContext();
+  const isCarted = cartProduct?.some(
+    (p) => String(p.productId) === String(product._id)
+  );
+  const isLoading = btnLoading?.[product._id];
 
   return (
     <div className="border border-gray-500/20 rounded-md md:px-4 px-3 py-2 bg-white min-w-56 max-w-56 w-full">
@@ -46,17 +50,20 @@ const ProductCard = ({ product, cartProduct ,handleProductCartBtn }) => {
           </p>
 
           <button
-            className="p-2 bg-green-50 border border-primary/30 rounded text-primary-dull font-medium cursor-pointer"
-            onClick={() => handleProductCartBtn(product._id)}
+            className="w-20 h-9 bg-green-50 border border-primary/30 rounded text-primary font-medium outline-none cursor-pointer"
+            onClick={() => handleAddCartBtn(product._id)}
+            disabled={isCarted}
           >
-            {isCarted ? (
-              <span className="flex items-center justify-center gap-1">
-                <FiCheck />
+            {isLoading ? (
+              <div className="w-4 h-4 mx-auto border-2 border-primary border-t-transparent rounded-full animate-spin"></div>
+            ) : isCarted ? (
+              <span className="flex items-center justify-center gap-0.5">
+                <FiCheck className="text-base" />
                 Added
               </span>
             ) : (
               <span className="flex items-center justify-center gap-1">
-                <PiShoppingCartSimple />
+                <PiShoppingCartSimple className="text-base" />
                 Add
               </span>
             )}

@@ -9,9 +9,10 @@
 
 @theme {
   --color-primary: #4fbf8b;
+  /* --color-primary: #96ae00; */
   --color-primary-dull: #44ae7c;
   --color-offwhite: #f0f2fa;
-  --color-black: #010101;
+  --color-black: #2d2a6e;
 }
 
 /* Loading Spinner */

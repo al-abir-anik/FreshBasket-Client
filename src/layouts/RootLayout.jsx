@@ -10,6 +10,7 @@ const RootLayout = () => {
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar setShowRegisterForm={setShowRegisterForm} />
+      <hr className="border-gray-300" />
       <main className="flex-grow">
         <Outlet />
       </main>

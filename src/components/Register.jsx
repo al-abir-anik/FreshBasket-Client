@@ -4,6 +4,7 @@ import AuthContext from "../auth/AuthContext";
 import { useForm } from "react-hook-form";
 import { LuEye } from "react-icons/lu";
 import { LuEyeOff } from "react-icons/lu";
+import axios from "axios";
 
 const Register = ({ setShowRegisterForm }) => {
   const { loginUser, setUser, createUser, updateUserProfile, setLoading } =
@@ -35,6 +36,14 @@ const Register = ({ setShowRegisterForm }) => {
         setUser(updateUser);
         updateUserProfile({ displayName: name });
         // , photoURL: photoUrl
+
+        axios
+          .post(`http://localhost:3000/new-user`, {
+            email: updateUser?.email,
+            cartlist: [],
+          })
+          .then((res) => console.log(res.data))
+          .catch((err) => console.error("Backend error:", err));
       })
       .catch((error) => {
         console.log(error.message);

@@ -5,10 +5,12 @@ import { assets } from "../assets/assets";
 import { LuSearch } from "react-icons/lu";
 import { RiMenu3Fill } from "react-icons/ri";
 import { PiShoppingCartSimple } from "react-icons/pi";
+import { useAppContext } from "../contexts/AppContext";
 
 const Navbar = ({ setShowRegisterForm }) => {
   const navigate = useNavigate();
   const { user, signOutUser } = useContext(AuthContext);
+  const { cartProduct } = useAppContext();
   const [open, setOpen] = useState(false);
 
   const handleSignOut = () => {
@@ -18,17 +20,51 @@ const Navbar = ({ setShowRegisterForm }) => {
   };
 
   return (
-    <nav className="flex items-center justify-between px-6 md:px-16 lg:px-24 xl:px-32 py-4 border-b border-gray-300 bg-white relative transition-all">
+    <nav className="w-11/12 mx-auto py-4 flex items-center justify-between bg-white relative transition-all">
       <Link to="/">
-        <img className="h-9" src={assets.logo} alt="logo" />
+        {/* <img className="h-9" src={assets.logo} alt="logo" /> */}
+        <p className="text-2xl font-black text-primary">
+          <span className="text-3xl">F</span>RESH
+          <span className="text-black">BASKET</span>
+        </p>
       </Link>
 
       {/* Desktop Menu */}
       <div className="hidden sm:flex items-center gap-8">
-        {user && <NavLink to={"/admin"}>Admin Dashboard</NavLink>}
-        <NavLink to={"/"}>Home</NavLink>
-        <NavLink to={"/all-products"}>All Products</NavLink>
-        {user && <NavLink to={"/my-orders"}>My Orders</NavLink>}
+        {user && (
+          <NavLink
+            to={"/admin"}
+            className="py-1 px-3 text-xs border border-gray-300 rounded-full"
+          >
+            Admin Dashboard
+          </NavLink>
+        )}
+        <NavLink
+          to={"/"}
+          className={({ isActive }) =>
+            isActive ? "text-primary font-medium" : ""
+          }
+        >
+          Home
+        </NavLink>
+        <NavLink
+          to={"/all-products"}
+          className={({ isActive }) =>
+            isActive ? "text-primary font-medium" : ""
+          }
+        >
+          All Products
+        </NavLink>
+        {user && (
+          <NavLink
+            to={"/my-orders"}
+            className={({ isActive }) =>
+              isActive ? "text-primary font-medium" : ""
+            }
+          >
+            My Orders
+          </NavLink>
+        )}
 
         <div className="hidden lg:flex items-center text-sm gap-2 border border-gray-300 px-3 rounded-full">
           <input
@@ -41,9 +77,9 @@ const Navbar = ({ setShowRegisterForm }) => {
 
         {/* Cart Icon */}
         <NavLink to={"/cart"} className="w-10 relative cursor-pointer">
-          <PiShoppingCartSimple className="text-2xl mx-auto" />
+          <PiShoppingCartSimple className="text-2xl mx-auto opacity-80" />
           <button className="absolute -top-2 -right-2 text-xs text-white bg-primary w-[18px] h-[18px] rounded-full">
-            3
+            {cartProduct.length}
           </button>
         </NavLink>
 

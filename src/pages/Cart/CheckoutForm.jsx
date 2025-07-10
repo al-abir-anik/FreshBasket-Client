@@ -16,7 +16,7 @@ const CheckoutForm = ({ cartlist }) => {
   const totalAmount = subtotal + shippingFee + tax;
 
   return (
-    <div className="max-w-sm w-full bg-gray-100/40 p-5 mt-12 sm:mt-16 border border-gray-300/70">
+    <div className="max-w-sm w-full h-fit bg-gray-100/40 p-5 mt-12 sm:mt-16 border border-gray-300/70 sticky top-0">
       <h2 className="text-xl md:text-xl font-medium">Order Summary</h2>
       <hr className="border-gray-300 my-5" />
 

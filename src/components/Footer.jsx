@@ -1,11 +1,15 @@
-import { assets, footerLinks } from "../assets/assets";
+import { footerLinks } from "../assets/assets";
 
 const Footer = () => {
   return (
-    <div className="mt-10 bg-primary/10">
+    <div className="mt-8 md:mt-14 lg:mt-20 bg-primary/10">
       <div className="w-5/6 mx-auto flex flex-col md:flex-row items-start justify-between gap-10 py-10 border-b border-gray-500/30 text-gray-500">
         <div>
-          <img className="w-34 md:w-32" src={assets.logo} alt="footer-logo" />
+          {/* <img className="w-34 md:w-32" src={assets.logo} alt="footer-logo" /> */}
+          <p className="text-2xl font-black text-primary">
+            <span className="text-3xl">F</span>RESH
+            <span className="text-black">BASKET</span>
+          </p>
 
           <p className="max-w-[410px] mt-6">
             We deliver fresh groceries and snacks straight to your door. Trusted
