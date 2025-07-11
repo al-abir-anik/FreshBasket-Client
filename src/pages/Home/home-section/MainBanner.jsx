@@ -7,7 +7,7 @@ const MainBanner = () => {
       <img
         src={assets.main_banner_bg}
         alt="banner"
-        className="w-full hidden md:block"
+        className="w-full min-h-screen/2 hidden md:block"
       />
       <img
         src={assets.main_banner_bg_sm}

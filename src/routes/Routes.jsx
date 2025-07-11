@@ -7,8 +7,6 @@ import LockRoute from "./LockRoute";
 import PrivateRoute from "./PrivateRoute";
 import UpdateFood from "../pages/ManageMyFoods/UpdateFood";
 import ContactUs from "../pages/ContactUs";
-import UserProfile from "../pages/Dashboard/UserProfile";
-import ManageProfile from "../pages/Dashboard/ManageProfile";
 import AllProducts from "../pages/AllProducts";
 import ProductDetails from "../pages/ProductDetails";
 import Cart from "../pages/Cart/Cart";
@@ -51,6 +49,7 @@ const Routes = createBrowserRouter([
         path: "/cart",
         element: <Cart />,
       },
+
       {
         path: "/manageMyFoods",
         element: (
@@ -95,14 +94,6 @@ const Routes = createBrowserRouter([
       {
         path: "orders",
         element: <Orders />,
-      },
-      {
-        path: "userProfile",
-        element: <UserProfile></UserProfile>,
-      },
-      {
-        path: "manageProfile",
-        element: <ManageProfile></ManageProfile>,
       },
     ],
   },

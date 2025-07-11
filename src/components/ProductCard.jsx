@@ -4,21 +4,21 @@ import { Link } from "react-router-dom";
 import { FiCheck } from "react-icons/fi";
 import { useAppContext } from "../contexts/AppContext";
 
-const ProductCard = ({ product, handleAddCartBtn, btnLoading }) => {
+const ProductCard = ({ product, handleAddToCart, cartBtnLoading }) => {
   const { cartProduct } = useAppContext();
   const isCarted = cartProduct?.some(
     (p) => String(p.productId) === String(product._id)
   );
-  const isLoading = btnLoading?.[product._id];
+  const isLoading = cartBtnLoading?.[product._id];
 
   return (
     <div className="border border-gray-500/20 rounded-md md:px-4 px-3 py-2 bg-white min-w-56 max-w-56 w-full">
       <Link
         to={`/product/${product._id}`}
-        className="group cursor-pointer flex items-center justify-center px-2"
+        className="px-2 group cursor-pointer flex items-center justify-center"
       >
         <img
-          className="group-hover:scale-105 transition max-w-26 md:max-w-36"
+          className="max-w-26 md:max-w-36 min-h-32 group-hover:scale-105 transition"
           src={product.image}
           alt={product.name}
         />
@@ -51,7 +51,7 @@ const ProductCard = ({ product, handleAddCartBtn, btnLoading }) => {
 
           <button
             className="w-20 h-9 bg-green-50 border border-primary/30 rounded text-primary font-medium outline-none cursor-pointer"
-            onClick={() => handleAddCartBtn(product._id)}
+            onClick={() => handleAddToCart(product._id)}
             disabled={isCarted}
           >
             {isLoading ? (

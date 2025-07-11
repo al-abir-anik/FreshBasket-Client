@@ -21,7 +21,7 @@ const Categories = () => {
             <img
               src={category.image}
               alt={category.text}
-              className="group-hover:scale-110 transition max-w-28"
+              className="max-w-28 min-h-24 group-hover:scale-110 transition"
             />
             <p className="text-sm font-medium">{category.text}</p>
           </div>

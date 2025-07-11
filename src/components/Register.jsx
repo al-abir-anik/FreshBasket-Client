@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { LuEye } from "react-icons/lu";
 import { LuEyeOff } from "react-icons/lu";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 const Register = ({ setShowRegisterForm }) => {
   const { loginUser, setUser, createUser, updateUserProfile, setLoading } =
@@ -36,18 +37,22 @@ const Register = ({ setShowRegisterForm }) => {
         setUser(updateUser);
         updateUserProfile({ displayName: name });
         // , photoURL: photoUrl
+        toast.success("Signup Successful!");
 
         axios
           .post(`http://localhost:3000/new-user`, {
             email: updateUser?.email,
-            cartlist: [],
+            address: "",
+            cartItems: [],
+            orders: [],
           })
           .then((res) => console.log(res.data))
           .catch((err) => console.error("Backend error:", err));
       })
       .catch((error) => {
-        console.log(error.message);
         setLoading(false);
+        console.log(error.message);
+        toast.error("Signup Failed!");
       });
   };
 
@@ -71,10 +76,10 @@ const Register = ({ setShowRegisterForm }) => {
         onClick={(e) => e.stopPropagation()}
         className="flex flex-col gap-3 m-auto items-start p-8 py-10 w-80 sm:w-[352px] rounded-lg shadow-xl border border-gray-200 bg-white"
       >
-        <p className="text-2xl font-medium m-auto">
+        <h2 className="text-2xl font-medium m-auto">
           <span className="text-primary">User</span>{" "}
           {state === "login" ? "Login" : "Signup"}
-        </p>
+        </h2>
 
         {/* name */}
         {state === "signup" && (

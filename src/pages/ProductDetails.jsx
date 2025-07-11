@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import { assets } from "../assets/assets";
 import ProductCard from "../components/ProductCard";
 
@@ -119,14 +119,12 @@ const ProductDetails = () => {
             <ProductCard key={p._id} product={p} />
           ))}
         </div>
-        <button
-          onClick={() =>
-            console.log("navigate to all-products and scroll to 0,0")
-          }
+        <Link
+          to={"/all-products"}
           className="mx-auto px-12 my-16 py-2.5 border rounded text-primary hover:bg-primary/10 transition cursor-pointer"
         >
           See more
-        </button>
+        </Link>
       </div>
     </div>
   );

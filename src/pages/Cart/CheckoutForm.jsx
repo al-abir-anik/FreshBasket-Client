@@ -3,10 +3,7 @@ import { CiDeliveryTruck } from "react-icons/ci";
 import { BsTelephoneInbound } from "react-icons/bs";
 
 const CheckoutForm = ({ cartlist }) => {
-  const [showNumberInput, setShowNumberInput] = useState(false);
   const [showAddressInput, setShowAddressInput] = useState(false);
-  const [mobileNumber, setMobileNumber] = useState("No number found");
-  const [deliveryAdrress, setDeliveryAdrress] = useState("No address found");
 
   const subtotal = cartlist.reduce((total, product) => {
     return total + product.offerPrice * product.quantity;
@@ -14,6 +11,9 @@ const CheckoutForm = ({ cartlist }) => {
   const shippingFee = 0;
   const tax = parseFloat((subtotal * 0.02).toFixed(2));
   const totalAmount = subtotal + shippingFee + tax;
+
+    const deliveryAdrress = "Chowrasta";
+    const phoneNumber = "012312312312";
 
   return (
     <div className="max-w-sm w-full h-fit bg-gray-100/40 p-5 mt-12 sm:mt-16 border border-gray-300/70 sticky top-0">
@@ -25,7 +25,7 @@ const CheckoutForm = ({ cartlist }) => {
         <div>
           <p className="text-sm font-medium uppercase">Mobile Number</p>
           <div className="flex justify-between items-start py-2">
-            <p className="text-gray-500">{deliveryAdrress}</p>
+            <p className="text-gray-500">{phoneNumber}</p>
             {/* <div className="w-3/4 py-1 bg-white rounded flex items-center text-sm gap-2 px-3">
               <input
                 className="w-full py-2 bg-transparent text-gray-500 outline-none placeholder-gray-400"

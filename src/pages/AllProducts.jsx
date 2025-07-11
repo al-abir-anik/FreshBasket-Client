@@ -1,15 +1,10 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState } from "react";
 import ProductCard from "../components/ProductCard";
-import AuthContext from "../auth/AuthContext";
-import axios from "axios";
 import { useAppContext } from "../contexts/AppContext";
-import toast from "react-hot-toast";
 
 const AllProducts = () => {
-  const { user } = useContext(AuthContext);
   const [products, setProducts] = useState([]);
-  const { setCartProduct } = useAppContext();
-  const [btnLoading, setBtnLoading] = useState(false);
+  const { handleAddToCart, cartBtnLoading } = useAppContext();
 
   useEffect(() => {
     fetch(`http://localhost:3000/all-products`)
@@ -21,27 +16,6 @@ const AllProducts = () => {
         console.log(error.message);
       });
   }, []);
-
-  const handleAddCartBtn = async (id) => {
-    setBtnLoading((prev) => ({ ...prev, [id]: true }));
-
-    const res = await axios.post(`http://localhost:3000/add-to-cart`, {
-      email: user?.email,
-      productId: id,
-    });
-
-    if (res.data.modifiedCount > 0 || res.data.insertedId) {
-      const updated = await fetch(
-        `http://localhost:3000/user-cartlist-2?email=${user?.email}`
-      );
-      const newData = await updated.json();
-      setCartProduct(newData);
-      toast.success('Added to cart!');
-    } else {
-      console.error("Product added failed");
-    }
-    setBtnLoading((prev) => ({ ...prev, [id]: false }));
-  };
 
   return (
     <div className="w-4/5 mx-auto mt-16 pb-8 min-h-screen">
@@ -56,8 +30,8 @@ const AllProducts = () => {
           <ProductCard
             key={p._id}
             product={p}
-            handleAddCartBtn={handleAddCartBtn}
-            btnLoading={btnLoading}
+            handleAddToCart={handleAddToCart}
+            cartBtnLoading={cartBtnLoading}
           />
         ))}
       </div>

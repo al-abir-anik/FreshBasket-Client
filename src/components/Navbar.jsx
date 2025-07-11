@@ -6,8 +6,9 @@ import { LuSearch } from "react-icons/lu";
 import { RiMenu3Fill } from "react-icons/ri";
 import { PiShoppingCartSimple } from "react-icons/pi";
 import { useAppContext } from "../contexts/AppContext";
+import toast from "react-hot-toast";
 
-const Navbar = ({ setShowRegisterForm }) => {
+const Navbar = ({ setShowRegisterForm, setShowProfileModal }) => {
   const navigate = useNavigate();
   const { user, signOutUser } = useContext(AuthContext);
   const { cartProduct } = useAppContext();
@@ -15,7 +16,10 @@ const Navbar = ({ setShowRegisterForm }) => {
 
   const handleSignOut = () => {
     signOutUser()
-      .then(() => navigate("/logIn"))
+      .then(() => {
+        navigate("/");
+        toast.success("Logout Successful");
+      })
       .catch((error) => console.log("ERROR", error.message));
   };
 
@@ -66,6 +70,7 @@ const Navbar = ({ setShowRegisterForm }) => {
           </NavLink>
         )}
 
+        {/* Search */}
         <div className="hidden lg:flex items-center text-sm gap-2 border border-gray-300 px-3 rounded-full">
           <input
             className="py-1.5 w-full bg-transparent outline-none placeholder-gray-500"
@@ -83,6 +88,7 @@ const Navbar = ({ setShowRegisterForm }) => {
           </button>
         </NavLink>
 
+        {/* login and user */}
         {user ? (
           <div className="relative group">
             <img
@@ -91,12 +97,15 @@ const Navbar = ({ setShowRegisterForm }) => {
               className="w-10"
             />
             <ul className="w-32 py-2.5 hidden group-hover:block absolute top-10 right-0 bg-white shadow border border-gray-200 rounded-md text-sm z-40">
-              <li className="p-1.5 pl-5 hover:bg-primary/10 cursor-pointer">
+              <li
+                onClick={() => setShowProfileModal(true)}
+                className="p-1.5 pl-5 hover:bg-primary/10 cursor-pointer"
+              >
                 Profile
               </li>
               <li
-                className="p-1.5 pl-5 text-red-400 hover:bg-red-50 cursor-pointer"
                 onClick={handleSignOut}
+                className="p-1.5 pl-5 text-red-400 hover:bg-red-50 cursor-pointer"
               >
                 Logout
               </li>
