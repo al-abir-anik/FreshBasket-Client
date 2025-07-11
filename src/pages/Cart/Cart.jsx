@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { assets } from "../../assets/assets";
 import { MdDeleteOutline } from "react-icons/md";
 import axios from "axios";
@@ -6,22 +6,12 @@ import { Link } from "react-router-dom";
 import CheckoutForm from "./CheckoutForm";
 import AuthContext from "../../auth/AuthContext";
 import toast from "react-hot-toast";
+import { useAppContext } from "../../contexts/AppContext";
 
 const Cart = () => {
   const { user } = useContext(AuthContext);
-  const [cartlist, setCartlist] = useState([]);
+  const { handleRemoveCartItem, cartItems, rmvBtnLoading } = useAppContext();
   const [qtyLoading, setQtyLoading] = useState({});
-
-  useEffect(() => {
-    fetch(`http://localhost:3000/user-cartlist?email=${user?.email}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setCartlist(data);
-      })
-      .catch((error) => {
-        console.log(error.message);
-      });
-  }, [user]);
 
   const handleQuantity = async (id, currentQty, type) => {
     setQtyLoading((prev) => ({
@@ -42,37 +32,19 @@ const Cart = () => {
 
     if (res.data.modifiedCount > 0) {
       const updated = await fetch(
-        `http://localhost:3000/user-cartlist?email=${user?.email}`
+        `http://localhost:3000/user-cart-items?email=${user?.email}`
       );
       const newData = await updated.json();
       setCartlist(newData);
-      toast.success('Quantity Updated');
+      toast.success("Quantity Updated");
     } else {
       console.error("Update quantity failed");
-      toast.error('Quantity update failed');
+      toast.error("Quantity update failed");
     }
     setQtyLoading((prev) => ({
       ...prev,
       [id]: { increase: false, decrease: false },
     }));
-  };
-
-  const handleDeleteCartProduct = async (id) => {
-    const res = await axios.patch(`http://localhost:3000/delete-cart-product`, {
-      email: user?.email,
-      productId: id,
-    });
-
-    if (res.data.modifiedCount > 0) {
-      const updated = await fetch(
-        `http://localhost:3000/user-cartlist?email=${user?.email}`
-      );
-      const newData = await updated.json();
-      setCartlist(newData);
-      toast.success('Removed from cart!');
-    } else {
-      console.error("product delete from cart failed");
-    }
   };
 
   return (
@@ -81,7 +53,7 @@ const Cart = () => {
         <h1 className="text-2xl md:text-3xl font-medium mb-10">
           Shopping Cart{" "}
           <span className="text-sm text-primary pl-3">
-            {cartlist.length} Items
+            {cartItems.length} Items
           </span>
         </h1>
 
@@ -93,12 +65,12 @@ const Cart = () => {
         </div>
 
         {/* Cart product details */}
-        {cartlist.length === 0 ? (
+        {cartItems.length === 0 ? (
           <p className="min-h-60 md:min-h-80 grid place-items-center text-lg font-medium text-black">
             Your cart is empty!
           </p>
         ) : (
-          cartlist.map((product, index) => (
+          cartItems.map((product, index) => (
             <div
               key={index}
               className="grid grid-cols-[2fr_1fr_1fr] text-gray-500 items-center text-sm md:text-base font-medium pt-6"
@@ -170,10 +142,14 @@ const Cart = () => {
               </p>
               {/* action column */}
               <button
-                onClick={() => handleDeleteCartProduct(product._id)}
+                onClick={() => handleRemoveCartItem(product._id)}
                 className="mx-auto p-1.5 border border-red-300 hover:bg-red-50 rounded-full cursor-pointer "
               >
-                <MdDeleteOutline className="text-xl text-red-400" />
+                {rmvBtnLoading[product._id] ? (
+                  <div className="w-3 h-3 mx-auto border-2 border-red-400 border-t-transparent rounded-full animate-spin"></div>
+                ) : (
+                  <MdDeleteOutline className="text-xl text-red-400" />
+                )}
               </button>
             </div>
           ))
@@ -193,7 +169,7 @@ const Cart = () => {
       </div>
 
       {/* --- Checkout Form ---  */}
-      <CheckoutForm cartlist={cartlist} />
+      <CheckoutForm cartItems={cartItems} />
     </div>
   );
 };

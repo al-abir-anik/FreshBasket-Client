@@ -5,11 +5,11 @@ import { FiCheck } from "react-icons/fi";
 import { useAppContext } from "../contexts/AppContext";
 
 const ProductCard = ({ product, handleAddToCart, cartBtnLoading }) => {
-  const { cartProduct } = useAppContext();
-  const isCarted = cartProduct?.some(
-    (p) => String(p.productId) === String(product._id)
+  const { cartItems } = useAppContext();
+
+  const isCarted = cartItems?.some(
+    (p) => String(p._id) === String(product._id)
   );
-  const isLoading = cartBtnLoading?.[product._id];
 
   return (
     <div className="border border-gray-500/20 rounded-md md:px-4 px-3 py-2 bg-white min-w-56 max-w-56 w-full">
@@ -34,12 +34,12 @@ const ProductCard = ({ product, handleAddToCart, cartBtnLoading }) => {
             .map((_, i) => (
               <img
                 key={i}
-                src={i < 4 ? assets.star_icon : assets.star_dull_icon}
+                src={i < product.rating ? assets.star_icon : assets.star_dull_icon}
                 alt=""
                 className="w-3 md:w-3.5"
               />
             ))}
-          <p>(4)</p>
+          <p>({product.rating})</p>
         </div>
         <div className="flex items-end justify-between mt-3">
           <p className="md:text-xl text-base font-medium text-primary">
@@ -50,11 +50,13 @@ const ProductCard = ({ product, handleAddToCart, cartBtnLoading }) => {
           </p>
 
           <button
-            className="w-20 h-9 bg-green-50 border border-primary/30 rounded text-primary font-medium outline-none cursor-pointer"
             onClick={() => handleAddToCart(product._id)}
             disabled={isCarted}
+            className={`w-20 h-9 bg-green-50 border border-primary/30 rounded text-primary font-medium outline-none ${
+              isCarted ? "" : "cursor-pointer"
+            }`}
           >
-            {isLoading ? (
+            {cartBtnLoading?.[product._id] ? (
               <div className="w-4 h-4 mx-auto border-2 border-primary border-t-transparent rounded-full animate-spin"></div>
             ) : isCarted ? (
               <span className="flex items-center justify-center gap-0.5">

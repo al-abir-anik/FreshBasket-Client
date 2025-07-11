@@ -2,10 +2,10 @@ import { useState } from "react";
 import { CiDeliveryTruck } from "react-icons/ci";
 import { BsTelephoneInbound } from "react-icons/bs";
 
-const CheckoutForm = ({ cartlist }) => {
+const CheckoutForm = ({ cartItems }) => {
   const [showAddressInput, setShowAddressInput] = useState(false);
 
-  const subtotal = cartlist.reduce((total, product) => {
+  const subtotal = cartItems.reduce((total, product) => {
     return total + product.offerPrice * product.quantity;
   }, 0);
   const shippingFee = 0;

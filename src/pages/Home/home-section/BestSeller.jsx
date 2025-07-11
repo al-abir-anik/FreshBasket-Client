@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import ProductCard from "../../../components/ProductCard";
-import { dummyProducts } from "../../../assets/assets";
 import { useAppContext } from "../../../contexts/AppContext";
 
 const BestSeller = () => {

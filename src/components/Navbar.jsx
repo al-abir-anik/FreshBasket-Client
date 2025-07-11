@@ -1,17 +1,17 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import AuthContext from "../auth/AuthContext";
+import { useAppContext } from "../contexts/AppContext";
 import { assets } from "../assets/assets";
-import { LuSearch } from "react-icons/lu";
 import { RiMenu3Fill } from "react-icons/ri";
 import { PiShoppingCartSimple } from "react-icons/pi";
-import { useAppContext } from "../contexts/AppContext";
 import toast from "react-hot-toast";
+import Search from "./Search";
 
 const Navbar = ({ setShowRegisterForm, setShowProfileModal }) => {
   const navigate = useNavigate();
   const { user, signOutUser } = useContext(AuthContext);
-  const { cartProduct } = useAppContext();
+  const { cartItems, search } = useAppContext();
   const [open, setOpen] = useState(false);
 
   const handleSignOut = () => {
@@ -22,6 +22,12 @@ const Navbar = ({ setShowRegisterForm, setShowProfileModal }) => {
       })
       .catch((error) => console.log("ERROR", error.message));
   };
+
+  useEffect(() => {
+    if (search.length > 0) {
+      navigate("/all-products");
+    }
+  }, [search, navigate]);
 
   return (
     <nav className="w-11/12 mx-auto py-4 flex items-center justify-between bg-white relative transition-all">
@@ -71,20 +77,13 @@ const Navbar = ({ setShowRegisterForm, setShowProfileModal }) => {
         )}
 
         {/* Search */}
-        <div className="hidden lg:flex items-center text-sm gap-2 border border-gray-300 px-3 rounded-full">
-          <input
-            className="py-1.5 w-full bg-transparent outline-none placeholder-gray-500"
-            type="text"
-            placeholder="Search products"
-          />
-          <LuSearch className="text-lg opacity-60" />
-        </div>
+        <Search />
 
-        {/* Cart Icon */}
+        {/* Cart link */}
         <NavLink to={"/cart"} className="w-10 relative cursor-pointer">
           <PiShoppingCartSimple className="text-2xl mx-auto opacity-80" />
           <button className="absolute -top-2 -right-2 text-xs text-white bg-primary w-[18px] h-[18px] rounded-full">
-            {cartProduct.length}
+            {cartItems.length}
           </button>
         </NavLink>
 

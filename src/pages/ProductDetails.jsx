@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import { assets } from "../assets/assets";
 import ProductCard from "../components/ProductCard";
+import { useAppContext } from "../contexts/AppContext";
 
 const ProductDetails = () => {
   const product = useLoaderData();
@@ -14,10 +15,9 @@ const ProductDetails = () => {
     rating,
     image,
     description,
-    createdAt,
-    updatedAt,
     inStock,
   } = product;
+  const { handleAddToCart, cartBtnLoading, cartItems } = useAppContext();
   const [thumbnail, setThumbnail] = useState(image[0]);
   const [relatedProducts, setRelatedProducts] = useState([]);
 
@@ -31,6 +31,8 @@ const ProductDetails = () => {
         console.log(error.message);
       });
   }, [_id]);
+
+  const isCarted = cartItems?.some((p) => String(p._id) === String(_id));
 
   return (
     <div className="w-5/6 lg:w-3/4 xl:w-2/3 mx-auto mt-16">
@@ -98,10 +100,25 @@ const ProductDetails = () => {
           </p>
           {/* Buttons */}
           <div className="w-3/4 flex items-center mt-10 gap-4 text-base">
-            <button className="w-full py-3.5 cursor-pointer font-medium bg-gray-100 text-gray-800/80 hover:bg-gray-200 transition">
-              Add to Cart
+            <button
+              onClick={() => handleAddToCart(_id)}
+              disabled={isCarted}
+              className={`w-full min-h-[52px] py-3.5 font-medium bg-gray-100 ${
+                isCarted
+                  ? "text-primary cursor-not-allowed"
+                  : "text-gray-700 hover:bg-gray-200 cursor-pointer"
+              }`}
+            >
+              {cartBtnLoading?.[_id] ? (
+                <div className="w-5 h-5 mx-auto border-2 border-gray-700 border-t-transparent rounded-full animate-spin"></div>
+              ) : isCarted ? (
+                "Added in cart"
+              ) : (
+                "Add to Cart"
+              )}
             </button>
-            <button className="w-full py-3.5 cursor-pointer font-medium bg-primary text-white hover:bg-primary-dull transition">
+
+            <button className="w-full py-3.5 font-medium bg-primary text-white hover:bg-primary-dull cursor-pointer">
               Buy now
             </button>
           </div>
