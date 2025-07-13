@@ -3,7 +3,7 @@ import { assets } from "../../assets/assets";
 import { MdDeleteOutline } from "react-icons/md";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import CheckoutForm from "./CheckoutForm";
+import OrderForm from "./OrderForm";
 import AuthContext from "../../auth/AuthContext";
 import toast from "react-hot-toast";
 import { useAppContext } from "../../contexts/AppContext";
@@ -171,7 +171,7 @@ const Cart = () => {
       </div>
 
       {/* --- Checkout Form ---  */}
-      <CheckoutForm cartItems={cartItems} />
+      <OrderForm />
     </div>
   );
 };

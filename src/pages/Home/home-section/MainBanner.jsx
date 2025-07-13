@@ -19,7 +19,10 @@ const MainBanner = () => {
           Freshness You can trust, Savings You will Love!
         </h1>
         <div className="flex items-center mt-8 font-medium">
-          <Link className="group flex items-center gap-2 px-7 md:px-9 py-3 bg-primary hover:bg-primary-dull transition rounded text-white cursor-pointer">
+          <Link
+            to={"/all-products"}
+            className="group flex items-center gap-2 px-7 md:px-9 py-3 bg-primary hover:bg-primary-dull transition rounded text-white cursor-pointer"
+          >
             Shop Now
             <img
               src={assets.white_arrow_icon}

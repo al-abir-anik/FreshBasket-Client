@@ -1,32 +1,22 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import AuthContext from "../auth/AuthContext";
 import { assets } from "../assets/assets";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { useAppContext } from "../contexts/AppContext";
 
 const UserProfile = ({ setShowProfileModal }) => {
   const { user, updateUserProfile } = useContext(AuthContext);
+  const { userInfo, setUserInfo } = useAppContext();
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
   } = useForm();
-  const [userInfo, setUserInfo] = useState({});
   const [editMode, setEditMode] = useState(false);
   const [updateBtnLoading, setUpdateBtnLoading] = useState(false);
-
-  useEffect(() => {
-    fetch(`http://localhost:3000/user-doc?email=${user?.email}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setUserInfo(data);
-      })
-      .catch((error) => {
-        console.log(error.message);
-      });
-  }, [user]);
 
   const handleUpdateUserInfo = async (data) => {
     setUpdateBtnLoading(true);

@@ -4,10 +4,13 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Register from "../components/Register";
 import UserProfile from "../components/userProfile";
+import Checkout from "../components/Checkout";
+import { useAppContext } from "../contexts/AppContext";
 
 const RootLayout = () => {
   const [showRegisterForm, setShowRegisterForm] = useState(false);
   const [showProfileModal, setShowProfileModal] = useState(false);
+  const { showCheckoutModal, setShowCheckoutModal } = useAppContext();
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -29,6 +32,8 @@ const RootLayout = () => {
       {showProfileModal && (
         <UserProfile setShowProfileModal={setShowProfileModal} />
       )}
+      {/* Check Out Modal */}
+      {showCheckoutModal && <Checkout />}
     </div>
   );
 };

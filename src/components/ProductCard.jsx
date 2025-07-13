@@ -31,7 +31,7 @@ const ProductCard = ({ product, handleAddToCart, cartBtnLoading }) => {
         <div className="flex items-center gap-0.5">
           {Array(5)
             .fill("")
-            .map((_, i) => (
+            .map((_, i) => ( 
               <img
                 key={i}
                 src={

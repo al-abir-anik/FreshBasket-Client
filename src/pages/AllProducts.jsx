@@ -5,25 +5,30 @@ import { useParams } from "react-router-dom";
 
 const AllProducts = () => {
   const { category } = useParams();
-  const { handleAddToCart, cartBtnLoading, search } = useAppContext();
+  const {
+    handleAddToCart,
+    cartBtnLoading,
+    search,
+    fetchLoading,
+    setFetchLoading,
+  } = useAppContext();
   const [products, setProducts] = useState([]);
-  const [productLoading, setProductLoading] = useState(true);
 
   useEffect(() => {
-    setProductLoading(true);
+    setFetchLoading(true);
     fetch(
       `http://localhost:3000/all-products?search=${search}&category=${category}`
     )
       .then((res) => res.json())
       .then((data) => {
         setProducts(data);
-        setProductLoading(false);
+        setFetchLoading(false);
       })
       .catch((error) => {
         console.log(error.message);
-        setProductLoading(false);
+        setFetchLoading(false);
       });
-  }, [search, category]);
+  }, [search, category, setFetchLoading]);
 
   return (
     <div className="w-4/5 mx-auto mt-16 pb-8 min-h-screen">
@@ -34,7 +39,7 @@ const AllProducts = () => {
         <span className="w-20 h-0.5 bg-primary rounded-full"></span>
       </div>
 
-      {productLoading ? (
+      {fetchLoading ? (
         <div className="min-h-[60vh] flex items-center justify-center">
           <div className="loader"></div>
         </div>

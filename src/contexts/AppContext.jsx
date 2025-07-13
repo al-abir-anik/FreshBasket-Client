@@ -7,7 +7,22 @@ export const AppContext = createContext(null);
 
 export const AppContextProvider = ({ children }) => {
   const { loading, user } = useContext(AuthContext);
+  const [fetchLoading, setFetchLoading] = useState(false);
+  const [showCheckoutModal, setShowCheckoutModal] = useState(false);
   const [search, setSearch] = useState("");
+
+  // load current user info
+  const [userInfo, setUserInfo] = useState({});
+  useEffect(() => {
+    fetch(`http://localhost:3000/user-doc?email=${user?.email}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setUserInfo(data);
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  }, [user]);
 
   // load currentUser cart items with product details
   const [cartItems, setCartItems] = useState([]);
@@ -87,6 +102,10 @@ export const AppContextProvider = ({ children }) => {
   };
 
   const appInfo = {
+    fetchLoading,
+    setFetchLoading,
+    userInfo,
+    setUserInfo,
     handleAddToCart,
     cartBtnLoading,
     handleRemoveCartItem,
@@ -94,7 +113,9 @@ export const AppContextProvider = ({ children }) => {
     cartItems,
     setCartItems,
     search,
-    setSearch
+    setSearch,
+    showCheckoutModal,
+    setShowCheckoutModal,
   };
 
   return (

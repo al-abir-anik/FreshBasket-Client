@@ -98,7 +98,7 @@ const Navbar = ({ setShowRegisterForm, setShowProfileModal }) => {
               alt="profile-image"
               className="w-10"
             />
-            <ul className="w-32 py-2.5 hidden group-hover:block absolute top-10 right-0 bg-white shadow border border-gray-200 rounded-md text-sm z-40">
+            <ul className="w-36 py-2.5 hidden group-hover:block absolute top-10 right-0 bg-white shadow border border-gray-200 rounded-md z-40">
               <li
                 onClick={() => setShowProfileModal(true)}
                 className="p-1.5 pl-5 hover:bg-primary/10 flex items-center gap-3 cursor-pointer"

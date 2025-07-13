@@ -1,68 +1,59 @@
 import { useEffect, useState } from "react";
-import { assets, dummyOrders } from "../../assets/assets";
+import { assets } from "../../assets/assets";
 
 const Orders = () => {
-  const [orders, setOrders] = useState([]);
-
-  //   useEffect(() => {
+  const [allOrders, setAllOrders] = useState([]);
 
   useEffect(() => {
-    setOrders(dummyOrders);
+    fetch(`http://localhost:3000/all-orders`)
+      .then((res) => res.json())
+      .then((data) => {
+        setAllOrders(data);
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
   }, []);
 
   return (
-    <div className="space-y-4">
+    <div className="w-10/12 space-y-5">
       <h2 className="text-lg font-medium">
-        Orders List{" "}
-        <span className="ml-1">({orders.length})</span>
+        Orders List <span className="ml-1">({allOrders.length})</span>
       </h2>
-      {orders.map((order, index) => (
+      {allOrders.map((order, index) => (
         <div
           key={index}
-          className="flex flex-col md:grid md:grid-cols-[2fr_1fr_1fr_1fr] md:items-center gap-5 p-5 max-w-4xl rounded-md border border-gray-300 text-gray-800"
+          className="flex flex-col md:grid md:grid-cols-[1fr_1fr_1fr] md:items-center gap-5 p-5 rounded-md border border-gray-300 text-gray-800"
         >
-          <div className="flex gap-5">
+          <div className="flex items-center gap-5">
             <img
-              className="w-12 h-12 object-cover opacity-60"
+              className="object-cover opacity-60"
               src={assets.box_icon}
               alt="boxIcon"
             />
-            <>
+
+            <div className="flex flex-col justify-center gap-3">
               {order.items.map((item, index) => (
-                <div key={index} className="flex flex-col justify-center">
+                <div key={index}>
                   <p className="font-medium">
-                    {item.product.name}{" "}
-                    <span
-                      className={`text-indigo-500 ${
-                        item.quantity < 2 && "hidden"
-                      }`}
-                    >
-                      x {item.quantity}
-                    </span>
+                    {item.productName}{" "}
+                    <span className={`text-primary `}>x {item.quantity}</span>
                   </p>
                 </div>
               ))}
-            </>
+            </div>
           </div>
 
-          <div className="text-sm">
-            <p className="font-medium mb-1">
-              {order.address.firstName} {order.address.lastName}
-            </p>
-            <p>
-              {order.address.street}, {order.address.city},{" "}
-              {order.address.state},{order.address.zipcode},{" "}
-              {order.address.country}
-            </p>
+          <div className="text-sm space-y-2">
+            <p>{order.userName}</p>
+            <p>{order.phoneNumber}</p>
+            <p>{order.shippingAddress}</p>
           </div>
 
-          <p className="font-medium text-base my-auto text-black/70">
-            ${order.amount}
-          </p>
-
-          <div className="flex flex-col text-sm">
-            <p>Method: {order.paymentType}</p>
-            <p>Date: {order.orderDate}</p>
+          <div className="flex flex-col text-sm space-y-1">
+            <p>Amount: $ {order.totalPrice}</p>
+            <p>Method: {order.paymentMethod}</p>
+            <p>Date: {new Date(order.orderDate).toLocaleString("en-US")}</p>
             <p>Payment: {order.isPaid ? "Paid" : "Pending"}</p>
           </div>
         </div>
