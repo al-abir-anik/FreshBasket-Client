@@ -6,7 +6,7 @@ const BottomBanner = () => {
       <img
         src={assets.bottom_banner_image}
         alt="banner"
-        className="w-full hidden md:block"
+        className="w-full min-h-[60vh] hidden md:block"
       />
       <img
         src={assets.bottom_banner_image_sm}

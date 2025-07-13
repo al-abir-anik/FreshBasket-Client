@@ -92,6 +92,7 @@ export const AppContextProvider = ({ children }) => {
     handleRemoveCartItem,
     rmvBtnLoading,
     cartItems,
+    setCartItems,
     search,
     setSearch
   };

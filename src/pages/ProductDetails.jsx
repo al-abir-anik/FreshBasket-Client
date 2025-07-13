@@ -54,7 +54,7 @@ const ProductDetails = () => {
             ))}
           </div>
 
-          <div className="border border-gray-500/30 max-w-100 rounded overflow-hidden">
+          <div className="w-fit h-fit max-w-100 border border-gray-500/30 rounded overflow-hidden">
             <img
               src={thumbnail}
               alt="Selected product"
@@ -63,7 +63,7 @@ const ProductDetails = () => {
           </div>
         </div>
 
-        <div className="text-sm w-full md:w-1/2">
+        <div className=" w-full md:w-1/2">
           <h1 className="text-3xl font-medium">{name}</h1>
           {/* rating star */}
           <div className="flex items-center gap-0.5 mt-2">
@@ -102,7 +102,7 @@ const ProductDetails = () => {
           <div className="w-3/4 flex items-center mt-10 gap-4 text-base">
             <button
               onClick={() => handleAddToCart(_id)}
-              disabled={isCarted}
+              disabled={isCarted || cartBtnLoading?.[_id]}
               className={`w-full min-h-[52px] py-3.5 font-medium bg-gray-100 ${
                 isCarted
                   ? "text-primary cursor-not-allowed"
@@ -133,7 +133,12 @@ const ProductDetails = () => {
         </div>
         <div className="w-full flex flex-wrap justify-evenly gap-3 md:gap-6">
           {relatedProducts.map((p) => (
-            <ProductCard key={p._id} product={p} />
+            <ProductCard
+              key={p._id}
+              product={p}
+              handleAddToCart={handleAddToCart}
+              cartBtnLoading={cartBtnLoading}
+            />
           ))}
         </div>
         <Link

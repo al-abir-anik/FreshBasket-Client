@@ -10,7 +10,8 @@ import { useAppContext } from "../../contexts/AppContext";
 
 const Cart = () => {
   const { user } = useContext(AuthContext);
-  const { handleRemoveCartItem, cartItems, rmvBtnLoading } = useAppContext();
+  const { handleRemoveCartItem, cartItems, setCartItems, rmvBtnLoading } =
+    useAppContext();
   const [qtyLoading, setQtyLoading] = useState({});
 
   const handleQuantity = async (id, currentQty, type) => {
@@ -35,7 +36,7 @@ const Cart = () => {
         `http://localhost:3000/user-cart-items?email=${user?.email}`
       );
       const newData = await updated.json();
-      setCartlist(newData);
+      setCartItems(newData);
       toast.success("Quantity Updated");
     } else {
       console.error("Update quantity failed");
@@ -75,7 +76,7 @@ const Cart = () => {
               key={index}
               className="grid grid-cols-[2fr_1fr_1fr] text-gray-500 items-center text-sm md:text-base font-medium pt-6"
             >
-              {/* details column */}
+              {/* product column */}
               <div className="flex md:gap-6 gap-3">
                 <div className="w-18 h-18 sm:w-20 sm:h-20 lg:w-24 lg:h-24 flex items-center justify-center border border-gray-300 rounded overflow-hidden cursor-pointer">
                   <img
@@ -143,6 +144,7 @@ const Cart = () => {
               {/* action column */}
               <button
                 onClick={() => handleRemoveCartItem(product._id)}
+                disabled={rmvBtnLoading[product._id]}
                 className="mx-auto p-1.5 border border-red-300 hover:bg-red-50 rounded-full cursor-pointer "
               >
                 {rmvBtnLoading[product._id] ? (

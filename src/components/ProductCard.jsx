@@ -34,7 +34,9 @@ const ProductCard = ({ product, handleAddToCart, cartBtnLoading }) => {
             .map((_, i) => (
               <img
                 key={i}
-                src={i < product.rating ? assets.star_icon : assets.star_dull_icon}
+                src={
+                  i < product.rating ? assets.star_icon : assets.star_dull_icon
+                }
                 alt=""
                 className="w-3 md:w-3.5"
               />
@@ -51,7 +53,7 @@ const ProductCard = ({ product, handleAddToCart, cartBtnLoading }) => {
 
           <button
             onClick={() => handleAddToCart(product._id)}
-            disabled={isCarted}
+            disabled={isCarted || cartBtnLoading?.[product._id]}
             className={`w-20 h-9 bg-green-50 border border-primary/30 rounded text-primary font-medium outline-none ${
               isCarted ? "" : "cursor-pointer"
             }`}

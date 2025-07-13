@@ -2,10 +2,8 @@ import { createBrowserRouter } from "react-router-dom";
 import RootLayout from "../layouts/RootLayout";
 import ErrorPage from "../pages/ErrorPage";
 import Home from "../pages/Home/Home";
-import ManageMyFoods from "../pages/ManageMyFoods/ManageMyFoods";
 import LockRoute from "./LockRoute";
 import PrivateRoute from "./PrivateRoute";
-import UpdateFood from "../pages/ManageMyFoods/UpdateFood";
 import ContactUs from "../pages/ContactUs";
 import AllProducts from "../pages/AllProducts";
 import ProductDetails from "../pages/ProductDetails";
@@ -52,27 +50,6 @@ const Routes = createBrowserRouter([
       {
         path: "/cart",
         element: <Cart />,
-      },
-
-      {
-        path: "/manageMyFoods",
-        element: (
-          <PrivateRoute>
-            <ManageMyFoods></ManageMyFoods>
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "/updateFood/:id",
-        element: (
-          <PrivateRoute>
-            <UpdateFood></UpdateFood>
-          </PrivateRoute>
-        ),
-        loader: ({ params }) =>
-          fetch(
-            `https://food-bridge-server-hazel.vercel.app/foods/${params.id}`
-          ),
       },
     ],
   },

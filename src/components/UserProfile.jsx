@@ -1,7 +1,9 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import AuthContext from "../auth/AuthContext";
 import { assets } from "../assets/assets";
 import { useForm } from "react-hook-form";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 const UserProfile = ({ setShowProfileModal }) => {
   const { user, updateUserProfile } = useContext(AuthContext);
@@ -11,13 +13,58 @@ const UserProfile = ({ setShowProfileModal }) => {
     watch,
     formState: { errors },
   } = useForm();
+  const [userInfo, setUserInfo] = useState({});
   const [editMode, setEditMode] = useState(false);
-  const [address, setAddress] = useState("");
+  const [updateBtnLoading, setUpdateBtnLoading] = useState(false);
 
-  const updateUserInfo = (data) => {
-    const { name, email, phone, address } = data;
+  useEffect(() => {
+    fetch(`http://localhost:3000/user-doc?email=${user?.email}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setUserInfo(data);
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  }, [user]);
 
-    setEditMode(false);
+  const handleUpdateUserInfo = async (data) => {
+    setUpdateBtnLoading(true);
+    const { name, phoneNumber, address } = data;
+
+    try {
+      // Update Firebase displayName
+      await updateUserProfile({
+        displayName: name,
+      });
+      // Send patch request to backend
+      const res = await axios.patch(`http://localhost:3000/update-user-info`, {
+        email: user?.email,
+        phoneNumber,
+        address,
+      });
+      // Handle backend response
+      if (res.data.modifiedCount > 0) {
+        const updated = await fetch(
+          `http://localhost:3000/user-doc?email=${user?.email}`
+        );
+        const newData = await updated.json();
+        setUserInfo(newData);
+        toast.success("Profile Updated");
+      } else {
+        toast.error("Profile update Failed!");
+      }
+    } catch (error) {
+      if (error.response?.data?.message === "No changes detected") {
+        toast.error("Nothing Changed.");
+      } else {
+        console.error("Update failed:", error);
+        toast.error("Something went wrong.");
+      }
+    } finally {
+      setEditMode(false);
+      setUpdateBtnLoading(false);
+    }
   };
 
   return (
@@ -54,12 +101,12 @@ const UserProfile = ({ setShowProfileModal }) => {
 
         {editMode ? (
           <form
-            onSubmit={handleSubmit(updateUserInfo)}
+            onSubmit={handleSubmit(handleUpdateUserInfo)}
             className="w-full flex flex-col gap-3 items-start"
           >
             {/* name */}
             <div className="w-full">
-              {/* <p>Name</p> */}
+              <p>Name</p>
               <input
                 {...register("name", {
                   minLength: {
@@ -78,8 +125,8 @@ const UserProfile = ({ setShowProfileModal }) => {
               )}
             </div>
             {/* email */}
-            <div className="w-full">
-              {/* <p>Email</p> */}
+            {/* <div className="w-full">
+              <p>Email</p>
               <input
                 {...register("email", {
                   minLength: {
@@ -98,12 +145,12 @@ const UserProfile = ({ setShowProfileModal }) => {
                   {errors.email.message}
                 </p>
               )}
-            </div>
+            </div> */}
             {/* phone number */}
             <div className="w-full">
-              {/* <p>Phone Number</p> */}
+              <p>Phone Number</p>
               <input
-                {...register("number", {
+                {...register("phoneNumber", {
                   minLength: {
                     value: 11,
                     message: "enter a valid phone number.",
@@ -116,17 +163,18 @@ const UserProfile = ({ setShowProfileModal }) => {
                 className="border border-gray-200 rounded w-full p-2 mt-1 outline-primary"
                 type="tel"
                 placeholder="enter your number"
-                defaultValue={user.phoneNumber}
+                defaultValue={userInfo.phoneNumber}
                 required
               />
-              {errors.number && (
+              {errors.phoneNumber && (
                 <p className="text-red-400 text-xs mt-2">
-                  {errors.number.message}
+                  {errors.phoneNumber.message}
                 </p>
               )}
             </div>
             {/*     address     */}
             <div className="w-full">
+              <p>Address</p>
               <textarea
                 {...register("address", {
                   minLength: {
@@ -137,6 +185,7 @@ const UserProfile = ({ setShowProfileModal }) => {
                 rows={2}
                 className="w-full p-2 mt-1 rounded border border-gray-200 resize-none outline-none"
                 placeholder="enter address"
+                defaultValue={userInfo.address}
                 required
               ></textarea>
               {errors.address && (
@@ -144,59 +193,53 @@ const UserProfile = ({ setShowProfileModal }) => {
               )}
             </div>
 
-            <button className="bg-primary text-white text-sm w-full py-2 rounded cursor-pointer">
-              Save Changes
+            <button
+              disabled={updateBtnLoading}
+              className={`w-full py-2 text-white text-sm rounded ${
+                updateBtnLoading
+                  ? "bg-gray-400 cursor-not-allowed"
+                  : "bg-primary hover:bg-primary-dull cursor-pointer"
+              }`}
+            >
+              {updateBtnLoading ? "Saving.." : "Save Changes"}
             </button>
           </form>
         ) : (
-          <div className="mx-auto flex justify-center my-3">
+          <div className="mx-auto flex flex-col justify-center items-center">
             <div className="w-28 h-28 rounded-full overflow-hidden">
               <img
-                className="h-32 object-cover object-top"
+                className="object-cover object-top"
                 src={
                   user.photoURL === null ? assets.profile_icon : user.photoURL
                 }
               />
             </div>
-            <div className="flex flex-col items-center">
-              <p className="font-medium">{user.displayName}</p>
-              <p className="text-gray-500 text-sm">{user.email}</p>
-              <p className="text-gray-500 text-sm">
-                {user.phoneNumber === null
-                  ? "Phone Number not found"
-                  : user.phoneNumber}
+            <div className="flex flex-col items-center gap-1 mt-2 text-gray-600">
+              <p className="text-xl font-medium text-black">
+                {user.displayName}
               </p>
-              <p className="text-gray-500 text-sm">
-                {address === null ? "Address not found" : address}
+              <p className="text-base">{user.email}</p>
+              <p className="text-sm">
+                {userInfo.phoneNumber === ""
+                  ? "phone Number not found"
+                  : userInfo.phoneNumber}
+              </p>
+              <p className="w-11/12 mx-auto text-sm text-center">
+                {userInfo.address === ""
+                  ? "Address not found"
+                  : userInfo.address}
               </p>
             </div>
           </div>
         )}
-
         {!editMode && (
           <button
             onClick={() => setEditMode(true)}
-            className="border text-sm text-gray-500 border-gray-300 w-28 h-8 rounded mt-5 flex items-center justify-center gap-1 cursor-pointer"
+            className="py-2 px-3 mx-auto border text-sm text-primary-dull hover:bg-primary/5 border-primary rounded cursor-pointer"
           >
             <p className="">Update Profile</p>
           </button>
         )}
-
-        {/* {editMode ? (
-          <button
-            onClick={handleUpdate}
-            className="bg-primary text-white text-sm w-full py-2 rounded mt-4 cursor-pointer"
-          >
-            Save Changes
-          </button>
-        ) : (
-          <button
-            onClick={() => setEditMode(true)}
-            className="border text-sm text-gray-500 border-gray-300 w-28 h-8 rounded mt-5 flex items-center justify-center gap-1 cursor-pointer"
-          >
-            <p className="">Update Profile</p>
-          </button>
-        )} */}
       </div>
     </div>
   );

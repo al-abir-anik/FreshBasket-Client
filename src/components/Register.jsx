@@ -23,6 +23,7 @@ const Register = ({ setShowRegisterForm }) => {
     loginUser(email, password)
       .then((result) => {
         console.log(result.user);
+        toast.success("Login Successful");
       })
       .catch((error) => {
         console.log(error.message);
@@ -36,12 +37,12 @@ const Register = ({ setShowRegisterForm }) => {
         const updateUser = result.user;
         setUser(updateUser);
         updateUserProfile({ displayName: name });
-        // , photoURL: photoUrl
         toast.success("Signup Successful!");
 
         axios
           .post(`http://localhost:3000/new-user`, {
             email: updateUser?.email,
+            phoneNumber: "",
             address: "",
             cartItems: [],
             orders: [],
@@ -56,7 +57,7 @@ const Register = ({ setShowRegisterForm }) => {
       });
   };
 
-  // Unified form submit handler
+  // Dynamic form submit handler
   const userRegister = (data) => {
     const { name, email, password } = data;
     if (state === "login") {

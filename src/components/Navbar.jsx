@@ -4,6 +4,8 @@ import AuthContext from "../auth/AuthContext";
 import { useAppContext } from "../contexts/AppContext";
 import { assets } from "../assets/assets";
 import { RiMenu3Fill } from "react-icons/ri";
+import { LuUser } from "react-icons/lu";
+import { LuLogOut } from "react-icons/lu";
 import { PiShoppingCartSimple } from "react-icons/pi";
 import toast from "react-hot-toast";
 import Search from "./Search";
@@ -13,6 +15,7 @@ const Navbar = ({ setShowRegisterForm, setShowProfileModal }) => {
   const { user, signOutUser } = useContext(AuthContext);
   const { cartItems, search } = useAppContext();
   const [open, setOpen] = useState(false);
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
 
   const handleSignOut = () => {
     signOutUser()
@@ -98,15 +101,15 @@ const Navbar = ({ setShowRegisterForm, setShowProfileModal }) => {
             <ul className="w-32 py-2.5 hidden group-hover:block absolute top-10 right-0 bg-white shadow border border-gray-200 rounded-md text-sm z-40">
               <li
                 onClick={() => setShowProfileModal(true)}
-                className="p-1.5 pl-5 hover:bg-primary/10 cursor-pointer"
+                className="p-1.5 pl-5 hover:bg-primary/10 flex items-center gap-3 cursor-pointer"
               >
-                Profile
+                <LuUser /> Profile
               </li>
               <li
-                onClick={handleSignOut}
-                className="p-1.5 pl-5 text-red-400 hover:bg-red-50 cursor-pointer"
+                onClick={() => setShowLogoutModal(true)}
+                className="p-1.5 pl-5 text-red-400 hover:bg-red-50/90 flex items-center gap-3 cursor-pointer"
               >
-                Logout
+                <LuLogOut /> Logout
               </li>
             </ul>
           </div>
@@ -118,6 +121,35 @@ const Navbar = ({ setShowRegisterForm, setShowProfileModal }) => {
             >
               Login
             </button>
+          </div>
+        )}
+        {/* logout modal */}
+        {showLogoutModal && (
+          <div
+            onMouseLeave={() => setShowLogoutModal(false)}
+            className="py-6 px-5 flex flex-col items-center bg-white border border-gray-200 rounded-xl shadow fixed top-16 right-19 z-99"
+          >
+            <span className="mx-auto p-3 bg-red-100 rounded-full">
+              <LuLogOut className="text-xl text-red-500" />
+            </span>
+            <p className="text-gray-600 my-3 text-center">
+              Do you really want to logout?
+            </p>
+
+            <div className="flex items-center justify-center gap-4 mt-3 w-full">
+              <button
+                onClick={() => setShowLogoutModal(false)}
+                className="w-full md:w-28 h-10 rounded-md border border-gray-300 bg-white text-gray-600 font-medium text-sm hover:bg-gray-100 active:scale-95 transition cursor-pointer"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleSignOut}
+                className="w-full md:w-28 h-10 rounded-md text-white bg-red-600 font-medium text-sm hover:bg-red-700 active:scale-95 transition cursor-pointer"
+              >
+                Logout
+              </button>
+            </div>
           </div>
         )}
       </div>
