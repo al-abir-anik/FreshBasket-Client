@@ -7,7 +7,7 @@ const BestSeller = () => {
   const { handleAddToCart, cartBtnLoading } = useAppContext();
 
   useEffect(() => {
-    fetch(`http://localhost:3000/best-seller`)
+    fetch(`https://freshbasket-server-seven.vercel.app/best-seller`)
       .then((res) => res.json())
       .then((data) => {
         setBestProducts(data);

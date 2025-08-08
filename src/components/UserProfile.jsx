@@ -28,7 +28,7 @@ const UserProfile = ({ setShowProfileModal }) => {
         displayName: name,
       });
       // Send patch request to backend
-      const res = await axios.patch(`http://localhost:3000/update-user-info`, {
+      const res = await axios.patch(`https://freshbasket-server-seven.vercel.app/update-user-info`, {
         email: user?.email,
         phoneNumber,
         address,
@@ -36,7 +36,7 @@ const UserProfile = ({ setShowProfileModal }) => {
       // Handle backend response
       if (res.data.modifiedCount > 0) {
         const updated = await fetch(
-          `http://localhost:3000/user-doc?email=${user?.email}`
+          `https://freshbasket-server-seven.vercel.app/user-doc?email=${user?.email}`
         );
         const newData = await updated.json();
         setUserInfo(newData);

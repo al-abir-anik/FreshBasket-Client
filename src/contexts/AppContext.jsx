@@ -14,7 +14,9 @@ export const AppContextProvider = ({ children }) => {
   // load current user info
   const [userInfo, setUserInfo] = useState({});
   useEffect(() => {
-    fetch(`http://localhost:3000/user-doc?email=${user?.email}`)
+    fetch(
+      `https://freshbasket-server-seven.vercel.app/user-doc?email=${user?.email}`
+    )
       .then((res) => res.json())
       .then((data) => {
         setUserInfo(data);
@@ -27,7 +29,9 @@ export const AppContextProvider = ({ children }) => {
   // load currentUser cart items with product details
   const [cartItems, setCartItems] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:3000/user-cart-items?email=${user?.email}`)
+    fetch(
+      `https://freshbasket-server-seven.vercel.app/user-cart-items?email=${user?.email}`
+    )
       .then((res) => res.json())
       .then((data) => {
         setCartItems(data);
@@ -41,11 +45,20 @@ export const AppContextProvider = ({ children }) => {
   const [cartBtnLoading, setCartBtnLoading] = useState(false);
   const handleAddToCart = async (id) => {
     setCartBtnLoading((prev) => ({ ...prev, [id]: true }));
+
     try {
-      const res = await axios.post(`http://localhost:3000/add-to-cart`, {
-        email: user?.email,
-        productId: id,
-      });
+      if (!user) {
+        toast.error("Login required!");
+        return;
+      }
+
+      const res = await axios.post(
+        `https://freshbasket-server-seven.vercel.app/add-to-cart`,
+        {
+          email: user?.email,
+          productId: id,
+        }
+      );
 
       if (res.data?.error === "Out of stock") {
         toast.error("Item Out of stock");
@@ -53,7 +66,7 @@ export const AppContextProvider = ({ children }) => {
       }
       if (res.data.modifiedCount > 0 || res.data.insertedId) {
         const updated = await fetch(
-          `http://localhost:3000/user-cart-items?email=${user?.email}`
+          `https://freshbasket-server-seven.vercel.app/user-cart-items?email=${user?.email}`
         );
         const newData = await updated.json();
         setCartItems(newData);
@@ -75,7 +88,7 @@ export const AppContextProvider = ({ children }) => {
     setRmvBtnLoading((prev) => ({ ...prev, [id]: true }));
     try {
       const res = await axios.patch(
-        `http://localhost:3000/delete-cart-product`,
+        `https://freshbasket-server-seven.vercel.app/delete-cart-product`,
         {
           email: user?.email,
           productId: id,
@@ -84,7 +97,7 @@ export const AppContextProvider = ({ children }) => {
 
       if (res.data.modifiedCount > 0) {
         const updateCart = await fetch(
-          `http://localhost:3000/user-cart-items?email=${user?.email}`
+          `https://freshbasket-server-seven.vercel.app/user-cart-items?email=${user?.email}`
         );
         const newData = await updateCart.json();
         setCartItems(newData);

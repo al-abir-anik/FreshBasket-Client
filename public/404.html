@@ -2,81 +2,152 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Fresh Basket - 404</title>
-    <!-- <style>
-      * {
+    <style>
+      /* Reset some default margins/paddings */
+      body,
+      html {
         margin: 0;
         padding: 0;
-        box-sizing: border-box;
-      }
-
-      html,
-      body {
         height: 100%;
         font-family: Arial, sans-serif;
+        background-color: white;
+        color: #333;
       }
 
       .container {
+        height: 100vh;
+        padding-bottom: 40px;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        height: 100vh;
-        padding-bottom: 10rem;
-        background-color: #f3f4f6;
         text-align: center;
-        gap: 20px;
+        padding-left: 16px;
+        padding-right: 16px;
+        box-sizing: border-box;
+      }
+
+      h1 {
+        font-size: 8rem; /* 8xl */
+        font-weight: 700;
+        color: #4fbf8b;
+        margin: 0;
+      }
+
+      @media (min-width: 768px) {
+        h1 {
+          font-size: 9rem; /* 9xl */
+        }
+      }
+
+      .divider {
+        height: 4px;
+        width: 64px;
+        background-color: #4fbf8b;
+        border-radius: 4px;
+        margin: 20px 0;
+      }
+
+      @media (min-width: 768px) {
+        .divider {
+          margin: 28px 0;
+        }
       }
 
       .title {
-        font-size: 10rem;
-        font-weight: 900;
-        color: #9538e2;
+        font-size: 2rem; /* 2xl */
+        font-weight: 700;
+        color: #333333;
+        margin: 0;
       }
 
-      .subtitle {
-        font-size: 3rem;
+      @media (min-width: 768px) {
+        .title {
+          font-size: 3rem; /* 3xl */
+        }
+      }
+
+      .description {
+        font-size: 0.875rem; /* sm */
+        margin-top: 16px;
+        color: #6b7280; /* gray-500 */
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      @media (min-width: 768px) {
+        .description {
+          font-size: 1rem; /* base */
+        }
+      }
+
+      .button-group {
+        margin-top: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        align-items: center;
+      }
+
+      @media (min-width: 640px) {
+        .button-group {
+          flex-direction: row;
+          justify-content: center;
+          gap: 16px;
+        }
+      }
+
+      a.button-primary {
+        background-color: #4fbf8b;
+        color: white;
+        padding: 10px 28px;
+        border-radius: 6px;
+        text-decoration: none;
         font-weight: 600;
-        color: #4a4a4a;
+        transition: transform 0.1s ease, background-color 0.2s ease;
+        display: inline-block;
       }
 
-      .message {
-        font-size: 1.25rem;
-        color: #666666;
-        max-width: 600px;
-        margin: 0 auto;
+      a.button-primary:hover {
+        background-color: #44ae7c;
       }
 
-      body {
-        padding-bottom: 50px;
+      a.button-primary:active {
+        transform: scale(0.95);
       }
-    </style> -->
+
+      a.button-secondary {
+        border: 1px solid #d1d5db; /* gray-300 */
+        background-color: white;
+        color: #333333;
+        padding: 10px 28px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: transform 0.1s ease;
+        display: inline-block;
+      }
+
+      a.button-secondary:active {
+        transform: scale(0.95);
+      }
+    </style>
   </head>
   <body>
-    <div
-      class="w-screen h-screen pb-40 flex flex-col items-center justify-center text-sm max-md:px-4"
-    >
-      <h1 class="text-8xl md:text-9xl font-bold text-[#4fbf8b]">404</h1>
-      <div class="h-1 w-16 rounded bg-[#4fbf8b] my-5 md:my-7"></div>
-      <p class="text-2xl md:text-3xl font-bold text-gray-800">Page Not Found</p>
-      <p class="text-sm md:text-base mt-4 text-gray-500 max-w-md text-center">
+    <div class="container">
+      <h1>404</h1>
+      <div class="divider"></div>
+      <p class="title">Page Not Found</p>
+      <p class="description">
         The page you are looking for might have been removed, had its name
         changed, or is temporarily unavailable.
       </p>
-      <div class="flex flex-col sm:flex-row items-center gap-4 mt-6">
-        <a
-          href="/"
-          class="bg-[#4fbf8b] hover:bg-[#44ae7c]-dull px-7 py-2.5 text-white rounded-md active:scale-95 transition-all"
-        >
-          Return Home
-        </a>
-        <a
-          href="/contact"
-          class="border border-gray-300 px-7 py-2.5 text-gray-800 rounded-md active:scale-95 transition-all"
-        >
-          Contact support
-        </a>
+      <div class="button-group">
+        <a href="/" class="button-primary">Return Home</a>
+        <a href="/contact" class="button-secondary">Contact support</a>
       </div>
     </div>
   </body>

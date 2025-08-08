@@ -17,7 +17,7 @@ const AllProducts = () => {
   useEffect(() => {
     setFetchLoading(true);
     fetch(
-      `http://localhost:3000/all-products?search=${search}&category=${category}`
+      `https://freshbasket-server-seven.vercel.app/all-products?search=${search}&category=${category}`
     )
       .then((res) => res.json())
       .then((data) => {

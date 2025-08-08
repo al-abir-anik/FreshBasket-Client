@@ -45,7 +45,7 @@ const Routes = createBrowserRouter([
         path: "/product/:id",
         element: <ProductDetails />,
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/product/${params.id}`),
+          fetch(`https://freshbasket-server-seven.vercel.app/product/${params.id}`),
       },
       {
         path: "/cart",

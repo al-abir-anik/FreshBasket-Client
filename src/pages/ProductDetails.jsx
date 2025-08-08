@@ -22,7 +22,7 @@ const ProductDetails = () => {
   const [relatedProducts, setRelatedProducts] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/related-products?id=${_id}`)
+    fetch(`https://freshbasket-server-seven.vercel.app/related-products?id=${_id}`)
       .then((res) => res.json())
       .then((data) => {
         setRelatedProducts(data);

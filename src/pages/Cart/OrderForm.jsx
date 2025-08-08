@@ -36,7 +36,7 @@ const OrderForm = () => {
         return;
       }
       // send order info to backend
-      const res = await axios.post(`http://localhost:3000/place-order`, {
+      const res = await axios.post(`https://freshbasket-server-seven.vercel.app/place-order`, {
         email: user?.email,
         userName: user?.displayName,
         phoneNumber,
@@ -47,7 +47,7 @@ const OrderForm = () => {
       // check the response and update cartitems
       if (res.data.success) {
         const updated = await fetch(
-          `http://localhost:3000/user-cart-items?email=${user?.email}`
+          `https://freshbasket-server-seven.vercel.app/user-cart-items?email=${user?.email}`
         );
         const newData = await updated.json();
         setCartItems(newData);

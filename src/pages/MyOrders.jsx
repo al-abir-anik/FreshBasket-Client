@@ -9,7 +9,9 @@ const MyOrders = () => {
 
   useEffect(() => {
     setFetchLoading(true);
-    fetch(`http://localhost:3000/user-orders?email=${user?.email}`)
+    fetch(
+      `https://freshbasket-server-seven.vercel.app/user-orders?email=${user?.email}`
+    )
       .then((res) => res.json())
       .then((data) => {
         setMyOrders(data);
@@ -33,7 +35,7 @@ const MyOrders = () => {
           <div className="loader"></div>
         </div>
       ) : myOrders.length === 0 ? (
-        <p className="min-h-[60vh] text-center text-gray-400 text-lg flex items-center">
+        <p className="w-full min-h-[40vh] text-center text-gray-400 text-lg flex items-center justify-center">
           You have no orders.
         </p>
       ) : (

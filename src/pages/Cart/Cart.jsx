@@ -23,7 +23,7 @@ const Cart = () => {
       type === "increase" ? currentQty + 1 : Math.max(currentQty - 1, 1);
 
     const res = await axios.patch(
-      `http://localhost:3000/update-cart-quantity`,
+      `https://freshbasket-server-seven.vercel.app/update-cart-quantity`,
       {
         email: user?.email,
         productId: id,
@@ -33,7 +33,7 @@ const Cart = () => {
 
     if (res.data.modifiedCount > 0) {
       const updated = await fetch(
-        `http://localhost:3000/user-cart-items?email=${user?.email}`
+        `https://freshbasket-server-seven.vercel.app/user-cart-items?email=${user?.email}`
       );
       const newData = await updated.json();
       setCartItems(newData);
@@ -67,7 +67,7 @@ const Cart = () => {
 
         {/* Cart product details */}
         {cartItems.length === 0 ? (
-          <p className="min-h-60 md:min-h-80 grid place-items-center text-lg font-medium text-black">
+          <p className="min-h-60 md:min-h-80 grid place-items-center text-lg text-gray-400">
             Your cart is empty!
           </p>
         ) : (

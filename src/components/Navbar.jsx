@@ -57,6 +57,7 @@ const Navbar = ({ setShowRegisterForm, setShowProfileModal }) => {
           className={({ isActive }) =>
             isActive ? "text-primary font-medium" : ""
           }
+          viewTransition
         >
           Home
         </NavLink>
@@ -65,6 +66,7 @@ const Navbar = ({ setShowRegisterForm, setShowProfileModal }) => {
           className={({ isActive }) =>
             isActive ? "text-primary font-medium" : ""
           }
+          viewTransition
         >
           All Products
         </NavLink>
@@ -74,6 +76,7 @@ const Navbar = ({ setShowRegisterForm, setShowProfileModal }) => {
             className={({ isActive }) =>
               isActive ? "text-primary font-medium" : ""
             }
+            viewTransition
           >
             My Orders
           </NavLink>
@@ -83,7 +86,11 @@ const Navbar = ({ setShowRegisterForm, setShowProfileModal }) => {
         <Search />
 
         {/* Cart link */}
-        <NavLink to={"/cart"} className="w-10 relative cursor-pointer">
+        <NavLink
+          to={"/cart"}
+          viewTransition
+          className="w-10 relative cursor-pointer"
+        >
           <PiShoppingCartSimple className="text-2xl mx-auto opacity-80" />
           <button className="absolute -top-2 -right-2 text-xs text-white bg-primary w-[18px] h-[18px] rounded-full">
             {cartItems.length}

@@ -25,7 +25,7 @@ const AddProduct = () => {
     };
 
     const res = await axios.post(
-      `http://localhost:3000/add-product`,
+      `https://freshbasket-server-seven.vercel.app/add-product`,
       newProduct
     );
 

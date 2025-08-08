@@ -40,7 +40,7 @@ const Register = ({ setShowRegisterForm }) => {
         toast.success("Signup Successful!");
 
         axios
-          .post(`http://localhost:3000/new-user`, {
+          .post(`https://freshbasket-server-seven.vercel.app/new-user`, {
             email: updateUser?.email,
             phoneNumber: "",
             address: "",

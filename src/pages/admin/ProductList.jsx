@@ -6,7 +6,7 @@ const ProductList = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/all-products`)
+    fetch(`https://freshbasket-server-seven.vercel.app/all-products`)
       .then((res) => res.json())
       .then((data) => {
         setProducts(data);
@@ -17,7 +17,7 @@ const ProductList = () => {
   }, []);
 
   const handleChangeStock = async (id, updateStock) => {
-    const res = await axios.patch(`http://localhost:3000/change-stock`, {
+    const res = await axios.patch(`https://freshbasket-server-seven.vercel.app/change-stock`, {
       productId: id,
       inStock: updateStock,
     });
