@@ -10,7 +10,7 @@ This project highlights my skills in **React development**, **state management**
 🔗 **Live Website:** [FreshBasket](https://freshbasket-aaa.surge.sh/)  
 🔗 **Server Repository:** [FreshBasket Server](https://github.com/al-abir-anik/FreshBasket-Server)
 
-![Homepage Screenshot](https://i.ibb.co.com/rKhgfG6h/fresh-Basket-home.png)
+<img src="https://i.ibb.co.com/rKhgfG6h/fresh-Basket-home.png" alt="Homepage Screenshot" className="w-full bg-no-repeat" />
 
 ---
 
